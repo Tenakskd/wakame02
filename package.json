@@ -1,0 +1,54 @@
+{
+  "name": "わかめtube",
+  "version": "2.6.8",
+  "main": "index.js",
+  "license": "CC-BY-4.0",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.17.1",
+    "miniget": "latest",
+    "m3u8stream": "latest",
+    "ytpl": "^2.x",
+    "ytsr": "latest",
+    "axios": "^1.7.7",
+    "follow-redirects": "^1.14.5",
+    "cors": "latest",
+    "cookie-parser": "^1.4.6",
+    "jsonpath": "^1.0.0",
+    "ws": "^8.7.0",
+    "soundcloud-downloader": "^1.0.0",
+    "express-session": "^1.18.1",
+    "@supabase/supabase-js": "^2.45.6",
+    "bcrypt": "^5.1.1",
+    "youtubei.js": "latest",
+    "compression": "^1.7.4",
+    "ytdl-core": "^4.11.5",
+    "xml2js": "^0.6.2",
+    "m3u8-parser": "^7.2.0",
+    "fs": "^0.0.2",
+    "form-data": "^4.0.1"
+  },
+  "description": "わかめ",
+  "engines": {
+    "node": "16.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://glitch.com/~wakame02m"
+  },
+  "author": "wakame",
+  "private": false,
+  "bugs": {
+    "url": "https://wakame02m.glitch.me/send",
+    "email": "23h11008@gmail.com"
+  },
+  "homepage": "https://wakame02m.glitch.me",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "和布"
+  ]
+}
