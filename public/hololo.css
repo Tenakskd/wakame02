@@ -1,0 +1,76 @@
+/* グローバルスタイル */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* コンテナ全体のスタイル */
+.container {
+    padding: 0;
+}
+
+/* サムネイルのスタイル */
+.thumbnail {
+    color: #212529;
+    border-radius: 4px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.4);
+    margin-bottom: 5px;
+    margin-top: 5px;
+    border: 0;
+    text-decoration: none; /* リンクの下線を削除 */
+}
+
+/* イメージのスタイル */
+.thumbnail img.profile-image {
+    border-radius: 50%;
+    width: 60px;
+    border: 2px #b92731 solid;
+}
+
+/* 日時のスタイル */
+.datetime {
+    line-height: 30px;
+}
+
+.datetime img {
+    vertical-align: middle;
+    position: relative;
+    top: -0.1em;
+    width: 17px;
+    height: 17px;
+}
+
+/* 名前のスタイル */
+.name {
+    line-height: 30px;
+    margin-right: 5px;
+}
+
+/* レイアウト用のスタイル */
+.row.no-gutters {
+    margin: 0;
+    padding: 0;
+}
+
+.col {
+    padding: 0;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* 高さを指定するスタイル */
+.row.height-60px {
+    height: 60px;
+    overflow: hidden;
+}
+
+/* コンテンツの幅を100%にする */
+.row.full-width {
+    width: 100%;
+    margin: 0;
+}

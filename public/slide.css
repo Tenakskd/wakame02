@@ -1,0 +1,104 @@
+#menu-btn:hover {
+    background-color: #cc6666;
+}
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: -300px; 
+    width: 300px;
+    height: 100%;
+    background-color: #343a40; 
+    color: white;
+    transition: right 0.3s ease;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    padding-top: 60px;
+    z-index: 2;
+}
+
+.side-menu.open {
+    right: 0; 
+}
+
+.side-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.side-menu ul li {
+    padding: 20px;
+    border-bottom: 1px solid #495057; 
+    transition: background-color 0.3s ease;
+}
+
+.side-menu ul li:hover {
+    background-color: #495057; 
+}
+
+.side-menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.side-menu ul li a i {
+    margin-right: 15px;
+    font-size: 22px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1;
+    display: none; 
+}
+
+.overlay.active {
+    display: block; 
+}
+
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.custom-checkbox input {
+    display: none; 
+}
+
+.checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #007BFF;
+    border-radius: 4px;
+    margin-left: 10px;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.custom-checkbox input:checked + .checkmark {
+    background-color: #007BFF;
+}
+
+.custom-checkbox input:checked + .checkmark::after {
+    content: '';
+    position: absolute;
+    left: 6px; 
+    top: 2px; 
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
