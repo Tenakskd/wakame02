@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ページテンプレ</title>
+  <link rel="stylesheet" href="/css/edustyles.css">
+</head>
+<body>
+  <header>
+    <div class="banner">
+      <button class="btn btn-link" onclick="window.location.href='/edu'">ホーム<br>🏠</button>
+      <button class="btn btn-link" id="helpButton">ヘルプ</button>
+    </div>
+  </header>
+<div id="overlay" class="overlay"></div>
+  <div class="container">
+    <h1>テンプレートを閲覧中</h1>
+    <form id="createForm">
+      <div class="form-group">
+        <label for="htmlInput">HTML内容</label>
+        <textarea id="htmlInput" name="htmlInput" placeholder="HTMLコードを入力またはファイルをドラッグしてください..." required>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ページのたいとる</title>
+  <style>body {font-family: 'Nico Moji', sans-serif; background-color: #fdf2f4; color: #333; margin: 0; padding: 0; line-height: 1.6;} a {color: #ff69b4;} a:hover {color: #FFA6C9;} header {background-color: #4CAF50; color: #fdf2f4; padding: 20px 0; text-align: center;} header h1 {margin: 0; font-size: 2.5em;} header p {font-size: 1.2em; margin-top: 10px;} .container {width: 80%; margin: 0 auto; padding: 20px 0;} h2 {color: #333; border-bottom: 2px solid #4CAF50; padding-bottom: 5px; margin-bottom: 20px;} p {font-size: 1.1em;} .code-block {background-color: #f0f0f0; border-left: 5px solid #4CAF50; padding: 15px; margin: 20px 0; overflow-x: auto; font-family: 'Courier New', monospace;} pre {margin: 0;} code {color: #d63384;} footer {background-color: #333; color: #fff; text-align: center; padding: 20px 0; margin-top: 40px;} footer p {margin: 0; font-size: 1.1em;}</style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <h1>タイトル</h1>
+      <p>サブタイトル</p>
+    </div>
+  </header>
+  
+  <main>
+    <div class="container">
+      <h2>見出し</h2>
+      <p>
+        あめんぼ
+      </p>
+      <h2>見出し2</h2>
+      <p>
+        あかいな
+      </p>
+      <h2>見出し3</h2>
+      <p>
+        あいうえお
+      </p>
+    </div>
+  </main>
+  <footer>
+    <div class="container">
+      <p>うわああああい</p>
+    </div>
+  </footer>
+</body>
+</html> </textarea>
+      </div>
+      <button id="previewBtn">プレビュー</button>
+
+  <p id="successMessage"></p>
+  <p id="errorMessage" style="color: red;"></p>
+      
+  <input type="hidden" id="formLoadTime">
+    </form>
+  </div>
+
+  <div class="help-popup" id="helpPopup">
+    <button onclick="closeHelp()">閉じる</button>
+    <div class="help-section">
+      <h4 onclick="toggleHelp(1)">HTMLファイルをアップロード▽</h4>
+      <div>HTMLファイルをアップロードするには、入力欄に直接HTMLファイルをドラッグ＆ドロップしてください。</div>
+    </div>
+    <div class="help-section">
+      <h4 onclick="toggleHelp(2)">パスワードの設定▽</h4>
+      <div>パスワードはページ編集や削除の際に使用します。忘れないようにしましょう。もし忘れてしまった場合、頑張って問い合わせてみて下さい。</div>
+    </div>
+    <div class="help-section">
+      <h4 onclick="toggleHelp(3)">画像を使用したい▽</h4>
+      <div>このサイトは画像のアップロードに対応していないので、他のサービス等にアップロードしたものをご利用ください<br><a href="/help/image" target="_blank">これについて詳しく見る</a></div>
+    </div>
+    <div class="help-section">
+      <h4 onclick="toggleHelp(4)">YouTube動画を埋め込みたい▽</h4>
+      <div>YouTube動画を見れない人たちも多く居るので、YouTube動画を誰でも見れるように変更してから利用する必要があります。<br><a href="/help/yt" target="_blank">これについて詳しく見る</a></div>
+    </div>
+  </div>  
+  <section class="terms">
+  <h2>注意！</h2>
+    <strong>これはテンプレートを表示しているだけです。自分のサイトに反映したい場合、このコードをコピペして下さい。</strong>
+</section>
+  <script>
+  document.getElementById('helpButton').addEventListener('click', () => {
+      document.getElementById('helpPopup').style.display = 'block';
+    });
+     document.getElementById('previewBtn').addEventListener('click', function() {
+        const htmlContent = document.getElementById('htmlInput').value;
+        if (htmlContent) {
+          const previewWindow = window.open('about:blank', '_blank');
+          previewWindow.document.write(htmlContent);
+        } else {
+          alert("HTMLを入力してください！");
+        }
+      });
+
+    function toggleHelp(index) {
+      const section = document.querySelectorAll('.help-section')[index - 1];
+      const div = section.querySelector('div');
+      div.style.display = div.style.display === 'none' ? 'block' : 'none';
+    }
+    function closeHelp() {
+      document.getElementById('helpPopup').style.display = 'none';
+    }
+    document.getElementById('htmlInput').addEventListener('dragover', (e) => {
+      e.preventDefault();
+    });
+    document.getElementById('htmlInput').addEventListener('drop', (e) => {
+      e.preventDefault();
+      const file = e.dataTransfer.files[0];
+      if (file && file.type === 'text/html') {
+        const reader = new FileReader();
+        reader.onload = function() {
+          document.getElementById('htmlInput').value = reader.result;
+        };
+        reader.readAsText(file);
+      } else {
+        alert('HTMLファイルをドラッグしてください');
+      }
+    });   
+  </script>
+</body>
