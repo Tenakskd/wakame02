@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title><%= videoTitle %></title>
+  <meta name="description" content="わかめ">
+  <meta property="og:site_name" content="わかめtube | まっしろ">
+  <meta property="og:title" content="<%= videoTitle %>">
+  <meta property="og:image" content="https://wakame02m.glitch.me/vi/<%= videoId %>/maxresdefault.jpg">
+  <meta name="theme-color" content="#ff8181">
+  <link rel="shortcut icon" href="/logo.png">
+  <meta name="author" content="わかめtube | まっしろ">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/font.css">
+  <link rel="stylesheet" href="/css/plyr.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/slide.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/plyr.polyfilled.js"></script>
+</script>
+</head>
+
+<body>
+<header>
+  <div class="banner">
+   <button class="btn btn-link" onclick="window.location.href='/'">ホーム🏠</button>
+   <button class="btn btn-link" onclick="window.location.href='/send'">問い合わせ</button>
+  <button class="btn btn-link" onclick="window.location.href='/blog/help'">ヘルプ</button>
+      <form class="d-flex" action="/s" method="get">
+          <input id="searchbox" name="q" class="form-control" type="text" placeholder="キーワードを入力..." aria-label="Search" required>
+      </form>
+   <button class="btn btn-link" id="menu-btn" style="position: absolute; right: 10px;">ツール</button>
+ </div>
+</header>
+<nav id="side-menu" class="side-menu">
+    <ul>
+        <li><label for="loopCheck" class="custom-checkbox">
+        ループ再生する
+        <input type="checkbox" id="loopCheck">
+        <span class="checkmark"></span>
+        </label></li>
+        <li><a href="/pytdf/<%= videoId %>">ダウンロード</a></li>
+        <li><a href="/ll/<%= videoId %>">音のみで再生する</a></li>
+        <li><a href="/www/<%= videoId %>">高画質で再生する</a></li>
+        <li><a href="/vi/<%= videoId %>/maxresdefault.jpg">サムネイルをダウンロード</a></li>
+        <li><a href="/wakameokini">お気に入りへ移動</a></li>
+        <li><a href="/wakamehistory">再生履歴</a></li>
+        <li><a href="/blog/up" target="_blank">アップデートを確認</a></li>
+    </ul>
+</nav>
+<div id="overlay" class="overlay"></div>
+  
+<div class="card">
+    <div class="loading-indicator">
+        <img src="https://cdn.glitch.global/3128bf45-3a23-4695-81ba-3aba21b8585b/IMG_1966.gif?v=1729824394361" alt="Loading..." />
+    </div>
+    <video id="wakameVideo" controls autoplay poster="/vi/<%= videoId %>/maxresdefault.jpg">
+        <source src="<%= stream_url %>" type="video/mp4">
+        読み込み失敗。ブラウザをアップデートしてどうぞ。
+    </video>
+</div>
+<div class="card">
+  <div class="toolcard-header">
+    <small class="text-muted">「ツール」は右上に移動しました。</small>
+    <small class="text-muted float-right"><button class="favorite-btn" onclick="toggleFavorite('<%= videoId %>', '<%= channelId %>', '<%= channelName %>','<%= videoTitle %>')">お気に入り</button></small>
+  </div>
+  <div class="card-channel">
+    <div class="container">
+    <a href="/c/<%= channelId %>">
+    <img src="<%= channelImage %>" alt="画像">
+    <%= channelName %>
+    </a>
+    </div>
+  </div>
+  <div class="toolcard-header">
+    <small class="text-muted"><%= likeCount %>いいね</small>
+    <small class="text-muted float-right"><%= videoViews %>回再生</small>
+  </div>
+  <div class="toolcard-header">
+    <small class="text-muted">共有用URL: https://wakame02m.glitch.me/login/guest/<%= videoId %></small>
+  </div>
+  <div class="card-body">
+    <h4>
+      <%= videoTitle %>
+    </h4>
+      <p><%- (videoDes || "").replace(/\n/g, "<br>") %></p>
+  </div>
+</div>
+  <div class="comment-box">
+    <h2>コメント</h2>
+    <div class="iframe-container">
+      <iframe src="https://wakamecomment.glitch.me/wakame/<%= videoId %>" scrolling="yes"></iframe>
+    </div>
+  </div>
+    <br>
+  <div class="tube-box">
+    <div class="iframe-container">
+<iframe src="https://wakamecomment.glitch.me/wakamer/<%= videoId %>" scrolling="yes"></iframe>
+    </div>
+  </div>
+   <style>
+	* {
+		--plyr-color-main: #ff8181;
+	}
+
+	a {
+		color: #ff8181;
+	}
+  .card {
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card-header, .card-footer {
+  background-color: #f8f9fa;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+  
+.card-channel {
+  padding: 7px;
+  height: 49px;
+}
+.card-channel p{
+  margin-left: 65px;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-body h5 {
+  margin-bottom: 10px;
+}
+
+.card-body p {
+  margin: 0;
+  white-space: pre-line;
+}
+video {
+  width: 100%;
+  height:100%;
+  min-width: 50px;
+  display: block;
+}
+.card-title h4 {
+  font-size: 1.6rem; 
+  color: #333;
+  margin: 10px 0; 
+}
+
+.card-title .container {
+  padding: 0 15px;
+}
+
+.toolcard-header {
+  background-color: #FFF5F7;
+  padding: 10px 10px;
+  border-bottom: 0.5px solid #f8e58c;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+}
+        .container {
+            height: 35px;
+            display: flex;
+            align-items: center;
+        }
+
+        .container img {
+            width: 35px;
+            height: 35px;
+        }
+
+        .container .text {
+            margin-left: 10px;
+        }
+    .comment-box {
+      background-color: #ffffff;
+      width: 85%;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: left;
+      box-sizing: border-box;
+    }
+
+    .comment-box h2 {
+      margin: 0 0 10px;
+      font-size: 24px;
+      color: #333;
+    }
+
+    .iframe-container {
+      width: 100%;
+      height: 900px;
+      border: none;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .tube-box {
+      background-color: #ffffff;
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: left;
+      box-sizing: border-box;
+    }
+.video-container {
+    position: relative;
+}
+
+.loading-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 10;
+}
+
+.loading-indicator img {
+    width: 75px;
+    height: 75px;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+     const player = new Plyr('video', {
+       controls: [
+         'play-large', 'play', 'progress', 'current-time', 'duration',
+         'mute', 'volume', 'settings','pip',
+         'fullscreen'
+       ],
+       settings: ['captions', 'quality', 'speed','loop'],
+       seekTime: 10,
+       title: '<%= videoTitle %>,',
+       iconUrl: '/plyr.svg',
+       autopause: false,
+       debug: true
+     });
+
+     player.on('error', err => {
+     	console.error(err);
+     	location.reload();
+     });
+
+});
+
+  
+const menuBtn = document.getElementById('menu-btn');
+const sideMenu = document.getElementById('side-menu');
+const overlay = document.getElementById('overlay');
+
+function toggleMenu() {
+    sideMenu.classList.toggle('open');
+    overlay.classList.toggle('active');
+}
+
+menuBtn.addEventListener('click', toggleMenu);
+
+overlay.addEventListener('click', toggleMenu);
+  
+const video = document.getElementById("wakameVideo");
+const loopCheck = document.getElementById("loopCheck");
+
+loopCheck.addEventListener('change', function() {
+    video.loop = this.checked;
+});
+
+let wakeLock = null;
+
+async function requestWakeLock() {
+            try {
+                if (!wakeLock) {
+                    wakeLock = await navigator.wakeLock.request('screen');
+                    console.log('Wake Lock is active');
+                    
+                    wakeLock.addEventListener('release', () => {
+                        console.log('Wake Lock has been released');
+                        wakeLock = null;
+                    });
+                }
+            } catch (err) {
+                console.error(`${err.name}, ${err.message}`);
+            }
+        }
+
+document.getElementById('wakameVideo').addEventListener('play', requestWakeLock);
+
+document.getElementById('wakameVideo').addEventListener('pause', () => {
+    if (wakeLock !== null) {
+        wakeLock.release();
+        wakeLock = null;
+        console.log('Wake Lock has been released manually');
+    }
+});
+
+document.getElementById('wakameVideo').addEventListener('ended', () => {
+    const videoElement = document.getElementById('wakameVideo');
+    if (!videoElement.loop && wakeLock !== null) {
+        wakeLock.release();
+        wakeLock = null;
+        console.log('Wake Lock has been released because video ended');
+    }
+});
+  
+const videoId = "<%= videoId %>";
+const channelId = "<%= channelId %>";
+const channelName = "<%= channelName %>";
+const videoTitle = "<%= videoTitle %>";
+
+function saveToHistory(videoId, channelId, channelName, videoTitle) {
+    let history = getHistoryFromCookies();
+
+    const historyIndex = history.findIndex(track => track.videoId === videoId);
+
+    if (historyIndex !== -1) {
+        history.splice(historyIndex, 1);
+    }
+
+    while (history.length >= 10) {
+        history.shift();
+    }
+
+    history.push({ videoId, channelId, channelName, videoTitle });
+
+    document.cookie = `wakametubehistory=${encodeURIComponent(JSON.stringify(history))}; path=/; max-age=31536000`;
+}
+
+function getHistoryFromCookies() {
+    const historyCookie = document.cookie.split('; ').find(row => row.startsWith('wakametubehistory='));
+    if (historyCookie) {
+        const cookieValue = historyCookie.split('=')[1];
+        try {
+            return JSON.parse(decodeURIComponent(cookieValue));
+        } catch (error) {
+            console.error('Error parsing history cookie:', error);
+            return [];
+        }
+    }
+    return [];
+}
+  
+document.addEventListener('DOMContentLoaded', () => {
+    saveToHistory(videoId, channelId, channelName, videoTitle);
+});
+  
+function toggleFavorite(videoId, channelId, channelName, videoTitle) {
+    let favorites = getFavoritesFromCookies();
+    
+    const favoriteIndex = favorites.findIndex(track => track.videoId === videoId);
+
+    if (favoriteIndex === -1) {
+        favorites.push({ videoId, channelId, channelName, videoTitle });
+        alert('お気に入りに追加しました！');
+    } else {
+        favorites.splice(favoriteIndex, 1);
+        alert('お気に入りを解除しました！');
+    }
+
+    document.cookie = `wakametubefavorites=${encodeURIComponent(JSON.stringify(favorites))}; path=/; max-age=31536000`;
+
+}
+
+function getFavoritesFromCookies() {
+    const favoritesCookie = document.cookie.split('; ').find(row => row.startsWith('wakametubefavorites='));
+    if (favoritesCookie) {
+        const cookieValue = favoritesCookie.split('=')[1];
+        try {
+            return JSON.parse(decodeURIComponent(cookieValue));
+        } catch (error) {
+            console.error('Error parsing favorites cookie:', error);
+            return [];
+        }
+    }
+    return [];
+}
+  
+//サジェスト
+  $(function () {
+    $('#searchbox').autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: '/suggest',
+                data: { keyword: request.term },
+                success: function (data) {
+                    response(data);
+                }
+            });
+        },
+        delay: 1,
+        select: function (event, ui) {
+            $('#searchbox').val(ui.item.value);
+            $('form').submit();
+        }
+    });
+});
+</script>
+<scody>
+</html>

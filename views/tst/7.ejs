@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Stream</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font.css">
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <video id="player" playsinline controls width="100%">
+        <source src="/live/iMfGziYsz40" type="application/vnd.apple.mpegurl">
+    </video>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const player = new Plyr('video', {
+                debug: true
+            });
+
+            player.on('error', (err) => {
+                console.error('Player error:', err);
+                location.reload();
+            });
+        });
+    </script>
+</body>
+</html>
