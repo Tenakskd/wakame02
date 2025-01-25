@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ブログ一覧</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #fdf2f4;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: #fdf2f4;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    .blog-list {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .blog-item {
+      background-color: #fff;
+      width: 200px;
+      margin: 15px;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .blog-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .blog-item h2 {
+      font-size: 1.3em;
+      margin-bottom: 10px;
+      color: #4CAF50;
+    }
+
+    .blog-item p {
+      font-size: 0.9em;
+      color: #555;
+      margin-bottom: 15px;
+    }
+
+    .blog-item a {
+      display: inline-block;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    .blog-item a:hover {
+      background-color: #45a049;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>ブログ一覧</h1>
+    <p>
+    ブログと言うよりは、お知らせボードみたいなものかもです
+  </p>
+</header>
+
+
+<div class="blog-list">
+
+  <div class="blog-item">
+    <h2>わかめMusic</h2>
+    <p>わかめMusicで音楽を聴いてみよう</p>
+    <a href="/blog/wakamc">見てみる</a>
+  </div>
+  
+  <div class="blog-item">
+    <h2>サーバー説明</h2>
+    <p>動画の取得方法のそれぞれの使用を説明してます</p>
+    <a href="/blog/saabaa">見てみる</a>
+  </div>
+  
+  <div class="blog-item">
+    <h2>ヘルプ</h2>
+    <p>わかめtubeのヘルプを書いてみますた。</p>
+    <a href="/blog/help">見てみる</a>
+  </div>
+  
+  <div class="blog-item">
+    <h2>プロフ</h2>
+    <p>wikiがないなったので、自己紹介をこっちに書いてみました。</p>
+    <a href="/blog/wakame02">見てみる</a>
+  </div>
+  
+  <div class="blog-item">
+    <h2>わかめtubeの使い方</h2>
+    <p>わかめtubeに対する、開発側からの考え。使い方と言うよりは、うーん、、言いたいこと...？</p>
+    <a href="/blog/wakametube">記事を読む</a>
+  </div>
+  
+  <div class="blog-item">
+    <h2>わかめAPI</h2>
+    <p>わかめAPIで、YouTube動画の情報を簡単に取得できます！</p>
+    <a href="/blog/wakame">記事を読む</a>
+  </div>
+
+  <div class="blog-item">
+    <h2>タイトル</h2>
+    <p>ブログの数をかさ増ししています。</p>
+    <a href="/blog/ddcfg">記事を読む</a>
+  </div>
+  
+  <div class="blog-item">
+    <h2>不具合情報</h2>
+    <p>わかめtubeで確認されている不具合たちです。ごめんね</p>
+    <a href="/blog/down">確認する</a>
+  </div>
+  
+  <div class="blog-item">
+    <h2>アップデートログ</h2>
+    <p>わかめtubeのアップデート情報がリアルタイムで更新されます。</p>
+    <a href="/blog/up">確認する</a>
+  </div>
+
+  <div class="blog-item">
+    <h2>お知らせ</h2>
+    <p>わかめtubeのお知らせが更新中だよ！</p>
+    <a href="/blog">確認する</a>
+  </div>
+  
+  <div class="blog-item">
+    <h2>サービス終了のお知らせ</h2>
+    <p>旧サイトに貼ったサ終のお知らせ。保存版。サ終はしないので安心してね。</p>
+    <a href="/blog/end">確認する</a>
+  </div>
+  
+  <div class="blog-item">
+    <h2>怖さを感じる</h2>
+    <p>これは何の害もなく、ただの警告です。恐れることはありません。</p>
+    <a href="/block/cc3q">行く！</a>
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2024 わかめ02. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

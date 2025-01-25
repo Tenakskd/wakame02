@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>ログ - わかめ</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/font.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <header>
+    <div class="banner">
+      <button class="btn btn-link" onclick="window.location.href='/'">ホーム🏠</button>
+      <button class="btn btn-link" onclick="window.location.href='/blog'">お知らせ</button>
+      <form class="d-flex" action="/s">
+        <input type="text" name="q" class="form-control" placeholder="キーワードを入力..." required>
+      </form>
+      <button class="btn btn-link" style="position: absolute; right: 10px;" onclick="window.location.href='/send'">問い合わせ</button>
+    </div>
+  </header>
+    <holo>
+        <h1>アップデートログ</h1>
+    </holo>
+    <main>
+      
+       <section class="log-entry">
+            <h2>2024年11月15日</h2>
+            <ul>
+                <li>クラスタリングを実装しました</li>
+            </ul>
+       </section>
+      
+       <section class="log-entry">
+            <h2>2024年11月11日</h2>
+            <ul>
+                <li>発生していた不具合の一部修正</li>
+            </ul>
+       </section>
+    
+       <section class="log-entry">
+            <h2>2024年11月2日</h2>
+            <ul>
+                <li>「動画を再読み込み」ボタンを設置しました。動画が途中で途切れてしまった場合などにどうぞ</li>
+            </ul>
+       </section>
+
+       <section class="log-entry">
+            <h2>2024年10月29日</h2>
+            <ul>
+                <li>API等の見直しを行いました</li>
+                <li>わかめtube APIを再稼働しました</li>
+            </ul>
+       </section>
+      
+       <section class="log-entry">
+            <h2>2024年10月24日</h2>
+            <ul>
+                <li>キリ番ページを作ってみました</li>
+                <li>フォント変えますた</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年10月21日</h2>
+            <ul>
+                <li>1部ページを除き、全てのページにサジェストを実装しますた。</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年10月20日</h2>
+            <ul>
+                <li>ホームにのみ、サジェストを実装してみました。</li>
+                <li>検索ページの使用感を改善しました。</li>
+                <li>ログイン時にログイン前にアクセスしようとしていたページに移動するようにしました</li>
+                <li>わかめtubeのデータベースサーバーを建ててみました！なんか面白いことできないかな〜。</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年10月19日</h2>
+            <ul>
+                <li>わかめtubeにCC-BY-4.0ライセンスを適用しました。</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年10月17日</h2>
+            <ul>
+                <li>ツールに「わかめおいしい！」の試作機を追加</li>
+                <li>わかめMusicをリリース。曲が聴けます！</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年10月15日</h2>
+            <ul>
+                <li>わかめMusicの調整</li>
+                <li>わかめtubeにもお気に入り機能を実装</li>
+                <li>いろいろ調整</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年10月12日</h2>
+            <ul>
+                <li>わかめMusicの調整</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年10月8日</h2>
+            <ul>
+                <li>サーバー1の動画のみ、wakeLockを有効化しました。端末が自動的にスリープすることを防ぎます。</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年10月6日</h2>
+            <ul>
+                <li>サーバー1のツールメニューに「ループ再生のON、OFF」機能を追加しました</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年10月5日</h2>
+            <ul>
+                <li>検索時の画像読み込みでLazy loadingを有効にしました。</li>
+                <li>動画再生時、右上に「ツール」ボタンが表示するようになりました。クリックすると、メニューが表示されます。</li>
+                <li>サムネイル画像を取得できるツールを追加しました</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年10月3日</h2>
+            <ul>
+                <li>一部ページのユーザー体験の向上のためのデザインの変更</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年10月1日</h2>
+            <ul>
+                <li>動画取得方法の調整</li>
+                <li>諸々のパッケージのアップデート</li>
+                <li>画質を犠牲にサムネイル画像の取得スピードを早くしました。</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年9月29日</h2>
+            <ul>
+                <li>エラー発生時と再生時に「サーバーを変更」ボタンを追加。より安定した方法で取得します</li>
+                <li>より快適に動作するように細部の修正</li>
+                <li>エラー対策の強化</li>
+                <li>エラー対応のスピードアップのための変更</li>
+                <li>ダウンロード時の動画の取得方法を変更</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年9月26日</h2>
+            <ul>
+                <li>セキュリティ強化</li>
+                <li>配色を少し変更</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年9月25日</h2>
+            <ul>
+                <li>大幅に軽量化</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年9月24日</h2>
+            <ul>
+                <li>いいね数を表示するようにしました</li>
+                <li>再生ページを少し変更しました</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年9月22日</h2>
+            <ul>
+                <li>概要欄のリンクの中にある「YouTube動画」へのリンクに対応しました</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年9月21日</h2>
+            <ul>
+                <li>高画質再生に対応しました</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年9月20日</h2>
+            <ul>
+                <li>何が変わったかを書くのがめんどくさいぐらい大幅にアップデートしました</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年9月18日</h2>
+            <ul>
+                <li>システムのアップデートを行いました</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年9月17日</h2>
+            <ul>
+                <li>動画取得時のエラーを出にくくしました</li>
+                <li>エラー案内ページの調整＆修正</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年9月16日</h2>
+            <ul>
+                <li>本体サイトの移転と、それに伴う調整</li>
+            </ul>
+       </section>
+      <section class="log-entry">
+            <h2>2024年9月13日</h2>
+            <ul>
+                <li>ダウンロードするファイルの名前が動画のタイトルになるように変更しました。が、安定はしていないので、ファイルの名前が変えたければ既存の「ファイルアプリ」から行なって下さい。</li>
+                <li>ツールをいくつか追加しました</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年9月11日</h2>
+            <ul>
+                <li>動画取得時のエラーを出にくくしました</li>
+                <li>コメント表示を追加</li>
+                <li>関連動画の表示</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年9月6日</h2>
+            <ul>
+                <li>ゲームをいくつか追加</li>
+                <li>概要欄をうまく取得できない不具合を修正</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年9月4日</h2>
+            <ul>
+                <li>タイトルや概要、再生回数を表示</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年9月3日</h2>
+            <ul>
+                <li>全ページにパスワードを適用</li>
+                <li>共有用としてゲスト閲覧用URLを生成</li>
+                <li>ログアウトを実装</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年8月31日</h2>
+            <ul>
+                <li>リンクをピンク色に変更</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年8月29日</h2>
+            <ul>
+                <li>大量の不具合を修正</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年7月26日</h2>
+            <ul>
+                <li>チャンネルページの不具合を修正</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年7月24日</h2>
+            <ul>
+                <li>細部の調整</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年7月22日</h2>
+            <ul>
+                <li>案内ページの表示形式を変更</li>
+                <li>動画の取得を失敗した際にリダイレクトする案内ページを追加</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年7月15日</h2>
+            <ul>
+                <li>動画の取得方法を大きく変更。初回の動画取得時は少し時間がかかる可能性があります</li>
+            </ul>
+       </section>
+       <section class="log-entry">
+            <h2>2024年7月4日</h2>
+            <ul>
+                <li>/settingページが追加。Sモードの切り替え実装</li>
+            </ul>
+        </section>
+       <section class="log-entry">
+            <h2>2024年7月2日</h2>
+            <ul>
+                <li>/urlsに入ることで、URLで動画を探すことができます。</li>
+            </ul>
+        </section>
+       <section class="log-entry">
+            <h2>2024年7月1日</h2>
+            <ul>
+                <li>プレイリストの表示に正式に対応</li>
+                <li>音のみを再生する機能の追加</li>
+            </ul>
+        </section>
+        <section class="log-entry">
+            <h2>2024年6月30日</h2>
+            <ul>
+                <li>ダウンロード時のファイルの名前を動画のタイトルになるように変更しました</li>
+                <li>ダウンロードする動画の品質を高くしました。ダウンロード時間が長くなる可能性があります</li>
+                <li>動画の読み込み速度を大幅に早く＆多数のエラー解消</li>
+            </ul>
+        </section>
+        <section class="log-entry">
+            <h2>2024年6月23日</h2>
+            <ul>
+                <li>/toolページを作成しました。android、電卓の2つが選べます</li>
+                <li>/appページを作成しました。6種類のゲームを設置しました</li>
+                <li>ホームページを少し変更しました</li>
+            </ul>
+        </section>
+        <section class="log-entry">
+            <h2>2024年6月20日</h2>
+            <ul>
+                <li>ホームページにパスワードを設定しますた</li>
+                <li>概要欄の表示を見やすくなるように変更しました</li>
+                <li>概要欄の上に軽量化された動画を再生するボタンを設置しました</li>
+                <li>/playで軽量化動画を再生できるようになりました</li>
+                <li>このページを作りました</li>
+            </ul>
+        </section>
+        <section class="log-entry">
+            <h2>2024年6月19日</h2>
+            <ul>
+                <li>ミュートボタンが表示されるようになりました</li>
+            </ul>
+        </section>
+        <!-- 他のログエントリも追加可能 -->
+    </main>
+<style>
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+main {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.log-entry {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+}
+
+.log-entry h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.log-entry ul {
+    list-style-type: disc;
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
+.log-entry ul li {
+    margin-bottom: 0.5rem;
+}
+</style>
+</body>
+</html>
