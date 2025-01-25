@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>わかめ</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/bootstrap.min.js"></script>
+    <style>
+    .error {
+      color: red;
+    }
+    .details {
+      color: gray;
+      font-size: small;
+      white-space: pre-wrap;
+    }
+  </style>
+  </head>
+<body>
+ <header>
+    <div class="banner">
+      <button class="btn btn-link" onclick="window.location.href='/'">ホーム🏠</button>
+      <button class="btn btn-link" onclick="window.location.href='/blog'">お知らせ</button>
+      <!-- 他のボタンもここに追加できます -->
+      <form class="d-flex" action="/s">
+        <input type="text" name="q" class="form-control" placeholder="キーワードを入力..." required>
+      </form>
+      <button class="btn btn-link" style="position: absolute; right: 10px;" onclick="window.location.href='/send'">問い合わせ</button>
+    </div>
+  </header>
+  <iframe src= "https://wakametubeapi.glitch.me" style="border: none; margin: 0; height: 5vh; width: 100%;">起動中...</iframe>
+  サイトに接続できません(´・ω・｀)。この上に「和布」と表示されるまで待って下さい。<br>
+  表示されてから、このページを再読み込みしてみてね。できない場合は諦めてね。非ログイン勢への慈悲はないよ(^^)
+  <br><br>
+   <% if (error) { %>
+    <div class="error"><%= error %></div>
+    <% if (details) { %>
+      <div class="details"><%= details %></div>
+    <% } %>
+  <% } %>
+</body>
+</html>
