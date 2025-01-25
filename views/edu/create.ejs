@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ページ作成</title>
+  <link rel="stylesheet" href="/css/edustyles.css">
+</head>
+<body>
+  <header>
+    <div class="banner">
+      <button class="btn btn-link" onclick="window.location.href='/edu'">ホーム<br>🏠</button>
+      <button class="btn btn-link" id="helpButton">ヘルプ</button>
+    </div>
+  </header>
+<div id="overlay" class="overlay"></div>
+  <div class="container">
+    <h1>「<%= id %>」を作成中</h1>
+    <form id="createForm">
+      <div class="form-group">
+        <label for="htmlInput">HTML内容</label>
+        <textarea id="htmlInput" name="htmlInput" placeholder="HTMLコードを入力またはファイルをドラッグしてください..." required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="password">パスワード</label>
+        <input type="password" id="password" name="password" required />
+      </div>
+      <button id="previewBtn">プレビュー</button>
+      
+      <button type="submit" id="saveButton">保存</button>
+
+  <p id="successMessage"></p>
+  <p id="errorMessage" style="color: red;"></p>
+      
+  <input type="hidden" id="formLoadTime">
+    </form>
+  </div>
+
+  <div class="help-popup" id="helpPopup">
+    <button onclick="closeHelp()">閉じる</button>
+    <div class="help-section">
+      <h4 onclick="toggleHelp(1)">HTMLファイルをアップロード▽</h4>
+      <div>HTMLファイルをアップロードするには、入力欄に直接HTMLファイルをドラッグ＆ドロップしてください。</div>
+    </div>
+    <div class="help-section">
+      <h4 onclick="toggleHelp(2)">パスワードの設定▽</h4>
+      <div>パスワードはページ編集や削除の際に使用します。忘れないようにしましょう。もし忘れてしまった場合、頑張って問い合わせてみて下さい。</div>
+    </div>
+    <div class="help-section">
+      <h4 onclick="toggleHelp(3)">htmlが書けません▽</h4>
+      <div>GPTとかのAIに書かせてみると良いかもしれません。</div>
+    </div>
+  </div>  
+  <section class="terms">
+  <h2>注意！</h2>
+    <strong>「保存」を押した後、しばらく待って下さい。絶対に保存を何度も押さないで下さい。データが失われ、あなたの端末からのリクエストが拒否される可能性があります。</strong>
+</section>
+  <script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const currentTimestamp = Date.now();
+    document.getElementById('formLoadTime').value = currentTimestamp;
+  });
+    document.getElementById('helpButton').addEventListener('click', () => {
+      document.getElementById('helpPopup').style.display = 'block';
+    });
+    
+  document.getElementById('previewBtn').addEventListener('click', function() {
+    const htmlContent = document.getElementById('htmlInput').value;
+    if (htmlContent) {
+      const previewWindow = window.open('about:blank', '_blank');
+      previewWindow.document.write(htmlContent);
+    } else {
+      alert("HTMLを入力してください！");
+    }
+  });
+
+    function toggleHelp(index) {
+      const section = document.querySelectorAll('.help-section')[index - 1];
+      const div = section.querySelector('div');
+      div.style.display = div.style.display === 'none' ? 'block' : 'none';
+    }
+    function closeHelp() {
+      document.getElementById('helpPopup').style.display = 'none';
+    }
+    document.getElementById('htmlInput').addEventListener('dragover', (e) => {
+      e.preventDefault();
+    });
+    document.getElementById('htmlInput').addEventListener('drop', (e) => {
+      e.preventDefault();
+      const file = e.dataTransfer.files[0];
+      if (file && file.type === 'text/html') {
+        const reader = new FileReader();
+        reader.onload = function() {
+          document.getElementById('htmlInput').value = reader.result;
+        };
+        reader.readAsText(file);
+      } else {
+        alert('HTMLファイルをドラッグしてください');
+      }
+    });   
+  document.getElementById('createForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const loadTime = document.getElementById('formLoadTime').value;
+      const currentTime = Date.now();
+
+      if (currentTime - loadTime < 2000) {
+        alert("危険なアクション: ボットと疑われるため、フォームを送信できません。");
+      }
+
+      const html = document.getElementById('htmlInput').value;
+      const password = document.getElementById('password').value;
+      const id = "<%= id %>";
+
+      document.getElementById('errorMessage').textContent = '';
+      document.getElementById('successMessage').textContent = '';
+
+      if (new Blob([html]).size > 50 * 1024) {
+        document.getElementById('errorMessage').textContent = 'HTMLサイズが大きすぎます。50KB以下にしてください。';
+        return;
+      }
+
+      const idPattern = /^[a-zA-Z0-9-_]+$/;
+      if (!idPattern.test(id)) {
+        document.getElementById('errorMessage').textContent = 'このIDは使用できません。';
+        return;
+      }
+
+      try {
+        const response = await fetch('/edu/request?path=/save', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ html, Id: id, pass: password })
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+          document.getElementById('successMessage').innerHTML = '保存に成功しました！あなたのサイトIDは<a href="/wk/<%= id %>" target="_blank"><%= id %></a>です<br>このページを編集したい場合は、このページからではなく<a href="/edu/edit/<%= id %>">編集</a>から行って下さい。';
+        } else {
+          document.getElementById('errorMessage').textContent = result.error || 'エラーが発生しました';
+        }
+      } catch (error) {
+        document.getElementById('errorMessage').textContent = '通信エラーが発生しました';
+      }
+    });
+  </script>
+</body>
+</html>
