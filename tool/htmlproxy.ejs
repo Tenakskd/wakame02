@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>URL入力</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #1f4037, #99f2c8);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.background {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  position: relative;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  max-width: 480px;
+  width: 90%;
+  backdrop-filter: blur(10px);
+}
+
+h1 {
+  font-size: 30px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  color: #00ffb6;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+button {
+  background-color: #00ffb6;
+  color: #000;
+  border: none;
+  padding: 16px 32px;
+  font-size: 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+button:hover {
+  background-color: #00e6a8;
+  transform: scale(1.05);
+}
+
+p {
+  font-size: 15px;
+  color: #ccc;
+  line-height: 1.6;
+  text-align: justify;
+  margin-top: 10px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+</style>
+</head>
+<body>
+<div class="background">
+  <div class="container">
+    <h1>わかめproxy</h1>
+    <button id="redirectButton">URLを入力！</button>
+    <p>URLをコピーできたら、上のボタンを押して下さい。</p>
+    <p>ウェブサイトからファイルを拾ってきます。サイトによってはUIがぶち壊れますが、「何が書いてあるか」を迅速に確認できます！</p>
+    <p>対象となるウェブサイトがX-Frame-Optionsヘッダー、またはCSPを設定している場合、取得できない場合の方が多いです。</p>
+  </div>
+</div>
+  <script>
+    document.getElementById('redirectButton').addEventListener('click', () => {
+      const url = prompt('URLを入力して下さい');
+
+      if (!url) {
+        alert('URLが提供されていません');
+        return;
+      }
+
+      const replacedUrl = url.replace(/\./g, '.wakame02.');
+
+      const redirectUrl = `/getpage/${encodeURIComponent(replacedUrl)}`;
+
+      window.location.href = redirectUrl;
+    });
+  </script>
+</body>
+</html>

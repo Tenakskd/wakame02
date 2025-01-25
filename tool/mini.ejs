@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>わかめ</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    .url-input {
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      background-color: #f0f0f0;
+    }
+    input[type="text"] {
+      flex-grow: 1;
+      margin-right: 10px;
+      padding: 5px;
+    }
+    button {
+      padding: 5px 10px;
+    }
+    iframe {
+      border: none;
+      margin: 0;
+      height: 80%;
+      width: 63%;
+      position: fixed;
+      bottom: 0;
+      right: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="url-input">
+    <input type="text" id="urlInput" placeholder="URLを入力してください">
+    <button id="loadButton">決定</button>
+  </div>
+
+  
+  <iframe id="iframe" src="" style="border: none;"></iframe>
+
+  <script>
+    document.getElementById('loadButton').addEventListener('click', function() {
+      const url = document.getElementById('urlInput').value;
+      if (url) {
+        document.getElementById('iframe').src = url;
+      } else {
+        alert('URLを入力してください');
+      }
+    });
+  </script>
+
+</body>
+</html>

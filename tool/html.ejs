@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>URL入力</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin-top: 50px;
+  font-family: 'Arial', sans-serif;
+  background-color: #282c34;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.outer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.5));
+  border-radius: 15px;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+}
+
+.inner-container {
+  text-align: center;
+  background: #3b3f44;
+  padding: 30px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+}
+
+h1 {
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: #61dafb;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #61dafb;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  background: transparent;
+  color: #fff;
+  outline: none;
+}
+
+input::placeholder {
+  color: #ccc;
+}
+
+button {
+  background-color: #61dafb;
+  color: #282c34;
+  border: none;
+  padding: 14px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #21a1f1;
+}
+
+p {
+  font-size: 14px;
+  color: #ccc;
+  margin-top: 10px;
+  line-height: 1.6;
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>HTMLを表示</h1>
+    <button id="redirectButton">URLを入力！</button>
+    <p>URLをコピーできたら、上のボタンを押して下さい。</p><br>
+    <p>対象となるウェブサイトがX-Frame-Optionsヘッダー、またはCSPを設定している場合、取得できない場合があります。</p>
+    <br><br><br>
+  </div>
+  <script>
+    document.getElementById('redirectButton').addEventListener('click', () => {
+      const url = prompt('URLを入力して下さい');
+
+      if (!url) {
+        alert('URLが入力されていません');
+        return;
+      }
+
+      const replacedUrl = url.replace(/\./g, '.wakame02.');
+
+      const redirectUrl = `/gethtml/${encodeURIComponent(replacedUrl)}`;
+
+      window.location.href = redirectUrl;
+    });
+  </script>
+</body>
+</html>
