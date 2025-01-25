@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>edu</title>
+    <link rel="stylesheet" href="/css/wakastyles.css">
+</head>
+<body>
+  <header>
+    <div class="banner">
+      <button class="btn btn-link" onclick="window.location.href='/'">ホーム<br>🏠</button>
+      <button class="btn btn-link" onclick="window.open('/edu/site', '_blank')">サイトのテンプレート</button>
+    </div>
+  </header>
+  <form id="IdForm">
+    <input type="text" id="Idtext" placeholder="編集したいページのIdを入力..." required>
+    <button type="submit" name="action">編集する</button>
+    <p id="errorMessage" style="color: red;"></p>
+</form>
+<section class="terms">
+  <h2>編集するときの注意</h2>
+  <ul>
+    <li>パスワードは正しく入力して下さい。編集が保存されません。</li>
+    <li>パスワードを何度も間違えると、サーバーはあなたのリクエストを自動的に拒否します。気をつけてください</li>
+  </ul>
+</section>
+<script>
+document.getElementById('IdForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    
+    const Id = document.getElementById('Idtext').value;
+    const idPattern = /^[a-zA-Z0-9-_]+$/;
+    const errorMessageElement = document.getElementById('errorMessage');
+
+    errorMessageElement.textContent = '';
+
+    if (!idPattern.test(Id)) {
+        errorMessageElement.textContent = 'このIDは使用できません。';
+        return;
+    }
+    
+    try {
+        const response = await fetch(`/edu/request?path=/req/${Id}`);
+        if (!response.ok) {
+            errorMessageElement.textContent = '通信エラーが発生しました';
+            return;
+        }
+        const { p } = await response.json();
+        
+        if (p == "no") {
+            errorMessageElement.textContent = 'このIDのページは存在しません。';
+            return;
+        }
+        window.location.href = `/edu/edit/${Id}`;
+    } catch (err) {
+        console.error('リクエストエラー:', err);
+        errorMessageElement.textContent = '予期しないエラーが発生しました。';
+    }
+});
+
+    </script>
+</body>
+</html>

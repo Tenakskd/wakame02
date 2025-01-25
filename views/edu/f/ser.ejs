@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>edu</title>
+    <link rel="stylesheet" href="/css/wakastyles.css">
+</head>
+<body>
+  <header>
+    <div class="banner">
+      <button class="btn btn-link" onclick="window.location.href='/'">ホーム<br>🏠</button>
+      <button class="btn btn-link" onclick="window.open('/edu/site', '_blank')">サイトのテンプレート</button>
+    </div>
+  </header>
+ <form id="IdForm">
+    <input type="text" id="Idtext" placeholder="ページのIdを入力..." required>
+    <button type="submit" name="action">見に行く</button>
+</form>
+<section class="terms">
+  <h2>このサイトについて</h2>
+  <ul>
+    <li>誰かが作ったサイトを、多くのURLから閲覧できます</li>
+    <li>上にIdを入力すると、そのIdのページを表示します。</li>
+  </ul>
+</section>
+<script>
+    document.getElementById('IdForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const Id = document.getElementById('Idtext').value;
+        window.location.href = `/wk/${Id}`;
+    });
+    </script>
+</body>
+</html>
