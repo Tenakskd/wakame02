@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>わかめ</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/bootstrap.min.js"></script>
+    <style>
+    .error {
+      color: red;
+    }
+    .details {
+      color: gray;
+      font-size: small;
+      white-space: pre-wrap;
+    }
+  </style>
+  </head>
+<body>
+ <header>
+    <div class="banner">
+      <button class="btn btn-link" onclick="window.location.href='/'">ホーム🏠</button>
+      <button class="btn btn-link" onclick="window.location.href='/blog'">お知らせ</button>
+      <form class="d-flex" action="/s">
+        <input type="text" name="q" class="form-control" placeholder="キーワードを入力..." required>
+      </form>
+      <button class="btn btn-link" style="position: absolute; right: 10px;" onclick="window.location.href='/send'">問い合わせ</button>
+    </div>
+  </header>
+  何かが上手くいきません(´・ω・｀)。<br>
+  とりあえず、このページを再読み込みしてみよっか
+  <button onclick="location.href='/redirect?p=w&id=<%= videoId %>'">ここを押して再読み込みする</button><br>
+  <br>
+  <p>再生できない場合、何度か再更新してみて下さい。それでも無理なら、エラー文をお問い合わせにコピペして送って下さい。</p>
+  
+   <% if (error) { %>
+    <div class="error"><%= error %></div>
+    <% if (details) { %>
+      <div class="details"><%= details %></div>
+    <% } %>
+  <% } %>
+    <br><br><br>
+  <p>
+    注意: 年齢制限のついている動画や、再生時に確認が必要な動画 (自傷などのトピックを含んでいる動画) はそもそも再生できません🥺
+  </p>
+</body>
+</html>

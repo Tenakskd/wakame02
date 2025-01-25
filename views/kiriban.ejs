@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>きりきり</title>
+  <style>
+body {
+  background-color: #fffafb;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+header {
+  width: 100%;
+  background-color: #333;
+  padding: 10px 0;
+  text-align: left;
+}
+
+    .btn {
+      background: none;
+      background-color: #333;
+      border: none;
+      color: white;
+      cursor: pointer;
+      padding: 10px 15px;
+      transition: background 0.3s, transform 0.3s;
+      border-radius: 5px;
+    }
+    
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 15px;
+}
+
+.banner .btn {
+  color: #ffffff;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.search-bar .form-control {
+   padding: 10px;
+   width: 300px;
+   border: 1px solid #cccccc;
+   border-radius: 4px;
+}
+
+.search-bar .btn-search {
+   padding: 10px;
+   background-color: #333333;
+   color: white;
+   border: none;
+   border-radius: 4px;
+   margin-left: 10px;
+}
+
+
+h1 {
+  text-align: center;
+  color: #333;
+  font-size: 28px;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+p.description {
+  text-align: center;
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 40px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.result-item {
+  display: grid;
+  grid-template-columns: 150px 1fr 150px;
+  gap: 15px;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.result-item:hover {
+  background-color: #f9f9f9;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.result-item img {
+  width: 100%;
+  border-radius: 6px;
+  transition: transform 0.3s;
+}
+
+.result-item img:hover {
+  transform: scale(1.05);
+}
+
+.result-item .channel-name,
+.result-item .video-title {
+  margin: 0;
+  color: #333;
+}
+
+.result-item .channel-name {
+  font-size: 14px;
+  color: #777;
+}
+
+.result-item .video-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.result-item .channel-name a,
+.result-item .video-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.result-item .channel-name a:hover,
+.result-item .video-title a:hover {
+  text-decoration: underline;
+}
+
+.result-item .video-meta {
+  text-align: right;
+  color: #666;
+  font-size: 16px;
+}
+  </style>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/font.css">
+</head>
+<body>
+  <header>
+    <div class="banner">
+      <button class="btn btn-link" onclick="window.location.href='https://wakame02m.glitch.me'">ホーム</button>
+      <button class="btn btn-link" onclick="window.location.href='/blog'">お知らせ</button>
+      <button class="btn btn-link" onclick="window.location.href='/wakams'">わかめMusic</button>
+      <form class="d-flex" action="/s">
+        <input type="text" name="q" class="form-control" placeholder="キリ番ダネー" required>
+      </form>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1>きりり</h1>
+    <p class="description">わかめtube全体で何再生目か。キリ番？みたいなやつです。「わかめtube全体の総再生回数」はリアルタイム更新ですが、動画リストの方は手動なのでリアルタイムじゃないです。
+      気分で初めてみました。飽きたらやめます。タイトルが長すぎると割愛します:)<br>
+      わかめtube全体の総再生回数: <%= latestId %>回<br>
+      統計開始日: 2024年10月21日</p>
+
+  <section class="results">
+    
+    
+   <div class="result-item">
+      <a href="/w/P7-L8LIPv6k">
+        <img loading="lazy" src="/vi/P7-L8LIPv6k/mqdefault.jpg" alt="サムネ"></a>
+      <div class="video-info">
+        <p class="video-title"><a href="/w/P7-L8LIPv6k">Sakuya Undresses ~ Code Geass: Rozé of the Recapture Ep 3 コードギアス 奪還のロゼ</a></p>
+        <p class="channel-name"><a href="/c/UCWNdPyvrTberNK4duyAvOWw">LitHero27</a></p>
+      </div>
+      <p class="play-count">6000回目の再生</p>
+    </div>
+    
+   <div class="result-item">
+      <a href="/w/ymSx0tlt728">
+        <img loading="lazy" src="/vi/ymSx0tlt728/mqdefault.jpg" alt="サムネ"></a>
+      <div class="video-info">
+        <p class="video-title"><a href="/w/ymSx0tlt728">告白直前酸欠状態</a></p>
+        <p class="channel-name"><a href="/c/UC8QrzBK_jZZ7WfMJBzm04Jw">Kurari</a></p>
+      </div>
+      <p class="play-count">5000回目の再生</p>
+    </div>
+
+   <div class="result-item">
+      <a href="/w/q7b3UZXg7FQ">
+        <img loading="lazy" src="/vi/q7b3UZXg7FQ/mqdefault.jpg" alt="サムネ"></a>
+      <div class="video-info">
+        <p class="video-title"><a href="/w/q7b3UZXg7FQ">【プロスピA】このランキングに入ってる人たちは本当に40代なのか！？wｗ【大谷翔平カップ】</a></p>
+        <p class="channel-name"><a href="/c/UCsPG0oac6OrBTt-yQ7BTl1w">【V.I.P切り抜きです】</a></p>
+      </div>
+      <p class="play-count">3500回目の再生</p>
+    </div>
+    
+   <div class="result-item">
+      <a href="/w/Gpf6VIQGaLM">
+        <img loading="lazy" src="/vi/Gpf6VIQGaLM/mqdefault.jpg" alt="サムネ"></a>
+      <div class="video-info">
+        <p class="video-title"><a href="/w/Gpf6VIQGaLM">【デュエマ替え歌】第零感</a></p>
+        <p class="channel-name"><a href="/c/UCjQiXR_6-jTnu5-1xC95_-g">No name</a></p>
+      </div>
+      <p class="play-count">3250回目の再生</p>
+    </div>    
+    
+   <div class="result-item">
+      <a href="/w/ewAHH-cde2g">
+        <img loading="lazy" src="/vi/ewAHH-cde2g/mqdefault.jpg" alt="サムネ"></a>
+      <div class="video-info">
+        <p class="video-title"><a href="/w/ewAHH-cde2g">【検証】人力車で浅草からディズニーランド行ったら何時間かかるの？何円？</a></p>
+        <p class="channel-name"><a href="/c/UCgMPP6RRjktV7krOfyUewqw">はじめしゃちょー</a></p>
+      </div>
+      <p class="play-count">3000回目の再生</p>
+    </div>
+    
+   <div class="result-item">
+      <a href="/w/0S5vXuGc9jE">
+        <img loading="lazy" src="/vi/0S5vXuGc9jE/mqdefault.jpg" alt="サムネ"></a>
+      <div class="video-info">
+        <p class="video-title"><a href="/w/0S5vXuGc9jE">【アニメ】地球が立方体になるとどうなるのか？</a></p>
+        <p class="channel-name"><a href="/c/UCUTgXNqRBqR33D5q10DfQXw">テイコウペンギン</a></p>
+      </div>
+      <p class="play-count">2750回目の再生</p>
+    </div>
+    
+   <div class="result-item">
+      <a href="/w/PQHYNL3jhIE">
+        <img loading="lazy" src="/vi/PQHYNL3jhIE/mqdefault.jpg" alt="サムネ"></a>
+      <div class="video-info">
+        <p class="video-title"><a href="/w/PQHYNL3jhIE">(9.0) ENDYMION [EXPERT 14+] (譜面確認) [CHUNITHM チュウニズム]</a></p>
+        <p class="channel-name"><a href="/c/UCdypzqq-d62AlNuQvN9NxMA">チュウニズム譜面保管所 Luminous</a></p>
+      </div>
+      <p class="play-count">2500回目の再生</p>
+    </div>
+    
+   <div class="result-item">
+      <a href="/w/XCS4IrofP58">
+        <img loading="lazy" src="/vi/XCS4IrofP58/mqdefault.jpg" alt="サムネ"></a>
+      <div class="video-info">
+        <p class="video-title"><a href="/w/XCS4IrofP58">【おすすめスマホゲーム】2023年決定版!!『原神に続け!』無料で面白いMMORPGアプリゲーム10選【無課金 ソシャゲ 神ゲー】</a></p>
+        <p class="channel-name"><a href="/c/UC7LKaLYz8ITYoHj2HInVg1w">【スマホゲーム】アプリゲーム情報局シーサー</a></p>
+      </div>
+      <p class="play-count">2250回目の再生</p>
+    </div>
+    
+   <div class="result-item">
+      <a href="/w/wZlv3qDPfjk">
+        <img loading="lazy" src="/vi/wZlv3qDPfjk/mqdefault.jpg" alt="サムネ"></a>
+      <div class="video-info">
+        <p class="video-title"><a href="/w/wZlv3qDPfjk">モエチャッカファイア / 弌誠：MUSIC VIDEO</a></p>
+        <p class="channel-name"><a href="/c/UC25MbIGo_hLcyFCI8UbVbsA">弌誠</a></p>
+      </div>
+      <p class="play-count">2000回目の再生</p>
+    </div>
+    
+   <div class="result-item">
+      <a href="/w/ucAqhIIsrFs">
+        <img loading="lazy" src="/vi/ucAqhIIsrFs/mqdefault.jpg" alt="サムネ"></a>
+      <div class="video-info">
+        <p class="video-title"><a href="/w/ucAqhIIsrFs">【給料日】回転寿司で豪遊してみた【アニメ】</a></p>
+        <p class="channel-name"><a href="/c/UCUTgXNqRBqR33D5q10DfQXw">テイコウペンギン</a></p>
+      </div>
+      <p class="play-count">1750回目の再生</p>
+    </div>
+    
+   <div class="result-item">
+      <a href="/w/VV0WOy4QXYo">
+        <img loading="lazy" src="/vi/VV0WOy4QXYo/mqdefault.jpg" alt="サムネ"></a>
+      <div class="video-info">
+        <p class="video-title"><a href="/w/VV0WOy4QXYo">白紙の海と透明少女/初音ミク</a></p>
+        <p class="channel-name"><a href="/c/UCyD0jJBQa7Yhpqozf8YwbdA">エト</a></p>
+      </div>
+      <p class="play-count">1500回目の再生</p>
+    </div>
+    
+    <div class="result-item">
+      <a href="/w/mZtjAPYy5Gg">
+        <img loading="lazy" src="/vi/mZtjAPYy5Gg/mqdefault.jpg" alt="サムネ"></a>
+      <div class="video-info">
+        <p class="video-title"><a href="/w/mZtjAPYy5Gg">世界が絶賛した史上最高の神ゲー『 ゼルダの伝説 ブレス オブ ザ ワイルド 』#11</a></p>
+        <p class="channel-name"><a href="/c/UCMJiPpN_09F0aWpQrgbc_qg">キヨ。</a></p>
+      </div>
+      <p class="play-count">1250回目の再生</p>
+    </div>
+    
+   <div class="result-item">
+      <a href="/w/dMid5k3dtLQ">
+        <img loading="lazy" src="/vi/dMid5k3dtLQ/mqdefault.jpg" alt="サムネ"></a>
+      <div class="video-info">
+        <p class="video-title"><a href="/w/dMid5k3dtLQ">敵全員閉じ込めるの楽しすぎワロタｗｗｗ【マリオメーカー2/マリメ2】</a></p>
+        <p class="channel-name"><a href="/c/UCu-VGg8L9qfzUSCW8y1SCKA">クサヤ人チャンネル</a></p>
+      </div>
+      <p class="play-count">1000回目の再生</p>
+    </div>
+    
+    <div class="result-item">
+      <a href="/w/OHnXB_ZlLxw">
+        <img loading="lazy" src="/vi/OHnXB_ZlLxw/mqdefault.jpg" alt="サムネ"></a>
+      <div class="video-info">
+        <p class="video-title"><a href="/w/OHnXB_ZlLxw">もこうのマリカ配信、台パン・切断9連発まとめ【2022/08/05】</a></p>
+        <p class="channel-name"><a href="/c/UCBfeiCudLN9333nKw23_Hwg">もこう字幕付き</a></p>
+      </div>
+      <p class="play-count">777回目の再生</p>
+    </div>
+    
+    <div class="result-item">
+      <a href="/w/Fgdx_ZxLjzQ">
+        <img loading="lazy" src="/vi/Fgdx_ZxLjzQ/mqdefault.jpg" alt="サムネ"></a>
+      <div class="video-info">
+        <p class="video-title"><a href="/w/Fgdx_ZxLjzQ">【漫画】スポーツ万能でいつも褒められてる妹は両親に溺愛されているが料理しか取り柄がない僕...(ry</a></p>
+        <p class="channel-name"><a href="/c/UCoTZGGLMexsUwrAQkg_h6EQ">俺はアントン</a></p>
+      </div>
+      <p class="play-count">500回目の再生</p>
+    </div>
+    
+    <div class="result-item">
+      <a href="/w/jv-tkKtDjcE">
+        <img loading="lazy" src="/vi/jv-tkKtDjcE/mqdefault.jpg" alt="サムネ"></a>
+      <div class="video-info">
+        <p class="video-title"><a href="/w/jv-tkKtDjcE">I Found The #1 RANKED Rocket Racing Player In Fortnite</a></p>
+        <p class="channel-name"><a href="/c/UCd534c_ehOvrLVL2v7Nl61w">Muselk</a></p>
+      </div>
+      <p class="play-count">400回目の再生</p>
+    </div>
+    
+    <div class="result-item">
+      <a href="/w/rtsiggqlDxY">
+        <img loading="lazy" src="/vi/rtsiggqlDxY/mqdefault.jpg" alt="サムネ"></a>
+      <div class="video-info">
+        <p class="video-title"><a href="/w/rtsiggqlDxY">【宇宙グミ】色んな国のギャラクシーなお菓子を爆食いしたら体内がギャラクシー化した</a></p>
+        <p class="channel-name"><a href="/c/UCwrxf28t_RyA23YV5EKutwg">パンナコタpannakota</a></p>
+      </div>
+      <p class="play-count">300回目の再生</p>
+    </div>
+    
+    <div class="result-item">
+      <a href="/w/LoSPNeDGI_k">
+        <img loading="lazy" src="/vi/LoSPNeDGI_k/mqdefault.jpg" alt="サムネ"></a>
+      <div class="video-info">
+        <p class="video-title"><a href="/w/LoSPNeDGI_k">【アニメ】今日は何の日でしょう！</a></p>
+        <p class="channel-name"><a href="/c/UC2j1I4dzlC5M7EkFiDmv88g">ちぐさくん【AMPTAK】</a></p>
+      </div>
+      <p class="play-count">200回目の再生</p>
+    </div>
+    
+    <div class="result-item">
+      <a href="/w/0qokNKi_h54">
+        <img loading="lazy" src="/vi/0qokNKi_h54/mqdefault.jpg" alt="サムネ"></a>
+      <div class="video-info">
+        <p class="video-title"><a href="/w/0qokNKi_h54">【オリジナルMV】おまじない</a></p>
+        <p class="channel-name"><a href="/c/UC54JqsuIbMw_d1Ieb4hjKoQ">みけねこch</a></p>
+      </div>
+      <p class="play-count">100回目の再生</p>
+    </div>
+  
+  </section>
+    
+  </div>
+</body>
+</html>

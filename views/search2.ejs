@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title><%= query %> - わかめtube</title>
+  <meta name="description" content="まっしろになっていく">
+  <meta property="og:title" content="わかめtube">
+  <meta property="og:description" content="まっしろになっていく">
+  <meta property="og:site_name" content="わかめtube | まっしろ">
+  <meta property="og:image" content="https://cdn.glitch.global/441c91ae-2a7f-4142-9ffb-ab0c7066dfa1/IMG_1142.png?v=1718674777380">
+  <meta name="theme-color" content="#ff8181">
+  <link rel="shortcut icon" href="https://cdn.glitch.global/441c91ae-2a7f-4142-9ffb-ab0c7066dfa1/IMG_1142.png?v=1718674777380">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="author" content="わかめtube | まっしろ">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/font.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="banner">
+      <button class="btn btn-link" onclick="window.location.href='/'">ホーム🏠</button>
+      <button class="btn btn-link" onclick="window.location.href='/blog'">お知らせ</button>
+      <form class="d-flex" action="/s" method="get">
+          <input id="searchbox" name="q" class="form-control" type="text" placeholder="キーワードを入力..." aria-label="Search" value="<%= query %>" required>
+      </form>
+      <button class="btn btn-link" style="position: absolute; right: 10px;" onclick="window.location.href='/send'">問い合わせ</button>
+    </div>
+  </header>
+  <p>
+    SモードON
+  </p>
+  <div class="results">
+    <% res.items.forEach(video => { %>
+      <% if (video.type === 'video') { %>
+        <div class="result-item">
+          <a href="/w/<%= video.id %>">
+            <img loading="lazy" src="https://i3.ytimg.com/vi/<%= video.id %>/sddefault.jpg" alt="<%= video.title %>">
+          </a>
+          <p class="channel-name"><a href="/c/<%= video.author.channelID %>"><%= video.author.name %></a></p>
+          <p class="video-title"><%= video.title %></p>
+          <p class="video-description"><%= video.description %></p>
+          <p class="video-meta"><%= video.uploadedAt %> - <%= video.duration %></p>
+          </div>
+      <% } else if (video.type === 'playlist') { %>
+        <div class="playresult-item">
+          <a href="/p/<%= video.playlistID %>">
+            <img style="opacity: 0.5" src="<%= video.firstVideo.bestThumbnail.url.slice(19) %>" alt="<%= video.title %>">
+          </a>
+          <p class="video-title">プレイリスト(<%= video.length %>本以上の動画)</p>
+          <p class="channel-name"><a href="/u/<%= video.owner.id %>"><%= video.owner.name %></a></p>
+        </div>
+      <% } else if (video.type === 'channel') { %>
+        <div class="result-item">
+          <a href="/c/<%= video.channelID %>">
+            <img src="<%= video.bestAvatar.url.slice(21) %>" alt="<%= video.name %>">
+          </a>
+          <p class="video-title"><%= video.name %></p>
+          <p class="video-description"><%= video.description || video.descriptionShort %></p>
+          <p class="video-meta"><%= video.subscribers %> subscribers</p>
+        </div>
+      <% } %>
+    <% }); %>
+  </div>
+
+  <div class="pagination">
+    <a class="btn" href="/s?q=<%= query %>&p=<%= page+1 %>">もっと読み込む</a>
+  </div>
+
+      
+  <style>
+    .pagination {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+    }
+
+    a {
+      color: #ff8181;
+    }
+  </style>
+<script>
+$(function () {
+    $('#searchbox').autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: '/suggest',
+                data: { keyword: request.term },
+                success: function (data) {
+                    response(data);
+                }
+            });
+        },
+        delay: 1,
+        select: function (event, ui) {
+            $('#searchbox').val(ui.item.value);
+            $('form').submit();
+        }
+    });
+});
+</script>
+</body>
+
+</html>

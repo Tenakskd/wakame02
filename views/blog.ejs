@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お知らせ</title>
+    <style>
+header {
+  width: 100%;
+  background-color: #000000;
+  padding: 10px 0;
+  text-align: left;
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 15px;
+}
+
+.banner .btn {
+  color: #ffffff;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+      
+a {
+    color: #ff69b4;
+}
+
+a:hover {
+    color: #FFA6C9;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.search-bar .form-control {
+   padding: 10px;
+   width: 300px;
+   border: 1px solid #cccccc;
+   border-radius: 4px;
+}
+
+.search-bar .btn-search {
+   padding: 10px;
+   background-color: #333333;
+   color: white;
+   border: none;
+   border-radius: 4px;
+   margin-left: 10px;
+}
+        .announcement {
+            border: 2px solid #ddd;
+            border-radius: 0;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #fff;
+            display: flex;
+        }
+
+        .announcement-icon {
+            width: 50px;
+            height: 50px;
+            background-image: url('https://cdn.glitch.global/441c91ae-2a7f-4142-9ffb-ab0c7066dfa1/IMG_1281.png?v=1718682861752');
+            background-size: cover;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .announcement-details {
+            flex: 1;
+        }
+
+        .announcement h2 {
+            font-size: 24px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .announcement .timestamp {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .announcement p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .profile-card {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            z-index: 1;
+        }
+
+        .announcement-icon:hover + .announcement-details .profile-card {
+            display: block;
+        }
+      .usuimoji {
+         font-size: 12px;
+         color: #888;
+         margin-bottom: 10px;
+         font-weight: 300; 
+      }
+    </style>
+</head>
+<body>
+    <header>
+    <div class="banner">
+      <button class="btn btn-link" onclick="window.location.href='/'">ホーム🏠</button>
+      <button class="btn btn-link" onclick="window.location.href='/blog'">お知らせ</button>
+      <form class="d-flex" action="/s">
+        <input type="text" name="q" class="form-control" placeholder="キーワードを入力..." required>
+      </form>
+      <button class="btn btn-link" style="position: absolute; right: 10px;" onclick="window.location.href='/send'">問い合わせ</button>
+    </div>
+  </header>
+  <p class="usuimoji" align="right"><a href="/blog/up">アップデートログ</a></p>
+  
+     <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>ダウンロード出来ない場合の対応</h2>
+            <p class="timestamp">投稿時間: 2024年10月28日 02:07</p>
+            <p>わかめtubeで、ダウンロード機能が動かない不具合を確認しておりますが、詳細な原因は不明です(おそらくレスポンス生成時のエラー)。
+「わざわざ360pでダウンロードしなくてもダウンロード専用のサイトがあるだろう」とか思ってましたが、想像以上に問い合わせが多かったのでダウンロードする方法を書きます。iPadバージョンです<br>
+1.右上の「ツール」を押す<br>
+2.「ストリームURLに移動」を長押し<br>
+3.「リンク先のファイルをダウンロード」を押す<br>
+4.ダウンロード完了。<br><br>PCの場合は、ストリームURLに移動したら普通にダウンロード出来るかと思います。誠に申し訳ございません。</p>
+        </div>
+    </div>
+
+   <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>泣泣泣</h2>
+            <p class="timestamp">投稿時間: 2024年10月25日 15:09</p>
+            <p>なんかダウンロード機能が動いてないみたいです（ ;  ; ）。動画は取得できてるんですが、動画のレスポンスを生成する時に
+          エラーが起きてるっぽいです(悲)。現在、原因を調査中です。</p>
+        </div>
+    </div>
+  
+  
+    <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>冗長</h2>
+            <p class="timestamp">投稿時間: 2024年10月24日 12:42</p>
+            <p>キリ番ページを作ってみました。期間限定ってやつです。ホームから飛べます。</p>
+        </div>
+    </div>
+  
+      <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>動画を取得できないの？</h2>
+            <p class="timestamp">投稿時間: 2024年10月1日 15:40</p>
+            <p>わかめtubeが動きませんか？<br>
+私はそのエラーを知っていますし、より安定するようなアップデートを行なっています。<br>
+これは私の想定しているエラーの範疇を超えており、YouTubeによるボット対策が強くなっていることを意味しています。<br>
+わかめtubeは何度か再読み込みをすれば動画を再生できたりします。要は安定した動画の取得が難しくなっています。と言うこと。できたりできんかったりする。
+</p>
+        </div>
+    </div>
+      <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>不具合がごにょごにょ</h2>
+            <p class="timestamp">投稿時間: 2024年9月24日 2:09</p>
+            <p>発生していた全ての不具合を修正しますた。</p>
+        </div>
+    </div>
+      <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>便利なツール</h2>
+            <p class="timestamp">投稿時間: 2024年9月21日 13:19</p>
+            <p>1080pの高画質に対応しました！近いうちに使い方をブログにまとめてみるのでご一読ください。</p>
+        </div>
+    </div>
+    <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>便利なツール</h2>
+            <p class="timestamp">投稿時間: 2024年9月20日 0:37</p>
+            <p>大型アプデが来ました🎉。別に建てていたサイトに接続する必要はなくなり、よりスピーディーに安定して動画を再生できます。
+また、動画の情報(タイトル、概要、など)の取得も安定化し、これまで発生していた不具合の全ては消え去りました。<br>
+※「わかめtubeが動作しているかを確認」は必要なくなりました。わかめtubeにアクセス可能な時、それはいつでも準備が整っていることを意味します<br></p>
+        </div>
+    </div>
+    <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>便利なツール</h2>
+            <p class="timestamp">投稿時間: 2024年9月13日 13:22</p>
+            <p>「ツール」にHTMLを取得するツールを追加しました。URLを入力すると、そのサイトから送られるファイルを取得して表示します。</p>
+        </div>
+    </div>
+    <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>ぽてと🎶</h2>
+            <p class="timestamp">投稿時間: 2024年9月11日 15:59</p>
+            <p>関連動画を表示するようにしました。が、UIが終わってるので、近いうちに修正します。どんなデザインが良いとかあったら「<a href="/send">問い合わせ</a>」からぜひ！</p>
+        </div>
+    </div>
+    <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>たったった🎶</h2>
+            <p class="timestamp">投稿時間: 2024年9月11日 14:34</p>
+            <p>動画取得時のエラーを多少は解消しました。さらに！コメントを表示できるようになりました！！🎉🎉
+              コメントのところにあるユーザーのリンクを踏んだ時にエラーが発生することがありますが、これは「そのユーザーが動画をアップロードしていない」ことを意味しています。深刻なエラーではありません。</p>
+        </div>
+    </div>
+       <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>ぶろぐ</h2>
+            <p class="timestamp">投稿時間: 2024年9月7日 11:26</p>
+            <p>wikiがないなったので、こっちに記事を書いてみました。<a href="/blog/list">ここ</a></p>
+        </div>
+    </div>
+     <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>いろいろ</h2>
+            <p class="timestamp">投稿時間: 2024年9月5日 11:26</p>
+            <p>動画のタイトル、概要、再生回数を表示するようにアップデートしました。しかし、完成された外部のAPIではなく、素人プログラミングのわかめtubeから直接取得しているので取得できない可能性がありまくりです(汗)。取得できなくてエラーが出ても止まらないようにはなってるので、ないよりマシでしょ</p>
+        </div>
+    </div>
+      <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>ああああああああ</h2>
+            <p class="timestamp">投稿時間: 2024年8月29日 11:21</p>
+            <p>長らく放置しててすみませんでした！！エラー起きまくってたみたいっすね(汗)。YouTubeボットアクセス対策がキビシイ😢。なんとか再生とダウンロードは出来るようにしました</p>
+        </div>
+    </div>
+        <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>rrr</h2>
+            <p class="timestamp">投稿時間: 2024年7月23日 11:31</p>
+            <p>「曲を聴く」が増えました。僕の独断で選ばれた曲が聴けます。増やして欲しい曲があれば問い合わせでどうぞ</p>
+        </div>
+    </div>
+      <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>ダウンロード機能について</h2>
+            <p class="timestamp">投稿時間: 2024年7月22日 03:20</p>
+            <p>ダウンロードが復活しました。好きな動画をダウンロードできます！</p>
+        </div>
+    </div>
+    <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>注意</h2>
+          <p class="timestamp">投稿時間: 2024年7月22日 02:29</p>
+            <p>「動かない」と言う問い合わせが多く来ますが、「一応動いてます」。わかりにくくてごめんね(´･ω･`)。現在、別にサイトを建てて、そこでYouTubeの動画を取得しています。なので、そのサイトに繋がるまで若干のタイムラグがあるのでエラーが起きます。再更新して下さい。何回かやったら動きます<br>追記: エラー時に案内ページにリダイレクトするようにしました</p>
+        </div>
+    </div>
+    <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>再開</h2>
+          <p class="timestamp">投稿時間: 2024年7月15日 18:32</p>
+            <p>YouTube側のボットアクセス対策などにより長らく使用できなかったわかめtubeですが、ようやくまとまった時間が取れたので動画を再生できるようにしました。ただし、ライブ配信を再生する場合、その動画ページに入る→「ライブ配信をみる」を押す必要があることに注意してください。また、ダウンロード機能はまだ多分うごかないです。これらの問題は、次の機会に解消される予定です</p>
+        </div>
+    </div>
+    <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>検索も早くなりました</h2>
+            <p class="timestamp">投稿時間: 2024年7月4日 15:45</p>
+            <p><a href="/setting">設定ページ</a>にアクセスしてみてください。そこでSモードを切り替えられます。Sモードが動作した時、それは検索時の読み込みもスピードアップします！たまに読み込めないサムネがありますが、まぁ気にすんな！</p>
+        </div>
+    </div>
+    <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>強化！</h2>
+          <p class="timestamp">投稿時間: 2024年6月30日 23:53</p>
+            <p>動画の読み込み速度を大幅に早く＆多数のエラー解消。実感できるレベルで早くなったと思います:)</p>
+        </div>
+    </div>
+  <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>軽量化</h2>
+            <p class="timestamp">投稿時間: 2024年6月28日 14:59</p>
+            <p>通常の動画再生時のUIを犠牲に少し軽量化を行いました。が、動画以外の情報も多く読み込みますので、再生できない場合は軽量化版を開いて下さい。</p>
+        </div>
+    </div>
+  <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>要望聞くよって話</h2>
+            <p class="timestamp">投稿時間: 2024年6月25日 8:59</p>
+            <p>「問い合わせ」から「要望・改善」を選んで、追加して欲しい機能やゲームなど書いてください。太鼓の達人にこの曲を追加して、などでも構いません。私はそれに対応するつもりです :)</p>
+        </div>
+    </div>
+  <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>いろいろな機能の実装</h2>
+            <p class="timestamp">投稿時間: 2024年6月23日 14:27</p>
+            <p>例えば、<a href="/app">/app</a>にアクセスしてみてください。あなたがゲームを楽しむ準備ができています</p>
+        </div>
+    </div>
+  <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>to do</h2>
+            <p class="timestamp">投稿時間: 2024年6月19日 14:31</p>
+            <p>エラーを減らす。軽量化版でのダウンロードを容易にする(機能としては実装済み)。その他いろいろ</p>
+        </div>
+    </div>
+        <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>ライブ配信に対応</h2>
+            <p class="timestamp">投稿時間: 2024年6月18日 23:54</p>
+            <p>YouTubeでライブストリーミング中の動画を見れるようになりました！超軽量化版、軽量化版も、すでにライブ視聴に対応済みです☑️</p>
+        </div>
+    </div>
+      <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>公式リンクサイト</h2>
+            <p class="timestamp">投稿時間: 2024年6月18日 23:29</p>
+            <p>訳わからん軽量化サイトを濫造し、作者もよく分からなくなって来たので雑にまとめあげる。<br><a href="https://sites.google.com/view/wakametube">https://sites.google.com/view/wakametube</a></p>
+        </div>
+    </div>
+      <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>軽量化バージョンリリース</h2>
+            <p class="timestamp">投稿時間: 2024年6月18日 22:53</p>
+            <p>無駄な読み込みを減らし、動画再生を超単純化＆分担出来るように。主に動画再生時のラグ改善<br><a href="https://wakame02c2.glitch.me">https://wakame02c2.glitch.me</a></p>
+        </div>
+    </div>
+      <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>超軽量化バージョンについて</h2>
+            <p class="timestamp">投稿時間: 2024年6月18日 16:42</p>
+            <p>URLを入力して再生するタイプ。それ以外の機能は何もついてないので軽い。<br><a href="https://wakame02c.glitch.me">https://wakame02c.glitch.me</a></p>
+        </div>
+    </div>
+    <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>再生成功！</h2>
+            <p class="timestamp">投稿時間: 2024年6月18日 14:41</p>
+            <p>再生＆ダウンロードが動くことを確認！よっしゃあああああああ。再生とダウンロードの両方が出来るサイトがなくて困ってたんよな＼(^ω^)／</p>
+        </div>
+    </div>
+
+    <div class="announcement">
+        <div class="announcement-icon"></div>
+        <div class="announcement-details">
+            <h2>サイト作成</h2>
+            <p class="timestamp">投稿時間: 2024年6月17日 13:15</p>
+            <p>簡単に再生＆ダウンロード出来るサイトを作成中です...</p>
+        </div>
+        <div class="profile-card">
+            <h3>わかめ02</h3>
+            <p>あたままっしろ</p>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

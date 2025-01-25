@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>(音のみ)<%= videoTitle %></title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/font.css">
+  <link rel="stylesheet" href="/css/plyr.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+<header>
+  <div class="banner">
+   <button class="btn btn-link" onclick="window.location.href='/'">ホーム🏠</button>
+   <button class="btn btn-link" onclick="window.location.href='/blog'">お知らせ</button>
+  <!-- 他のボタンもここに追加できます -->
+   <form class="d-flex" action="/s">
+    <input type="text" name="q" class="form-control" placeholder="キーワードを入力..." required>
+   </form>
+    <button class="btn btn-link" style="position: absolute; right: 10px;" onclick="window.location.href='/send'">問い合わせ</button>
+ </div>
+</header>
+  <br>
+  <h1><%= videoTitle %></h1>
+  <audio controls>
+    <source src="<%= audioUrl %>">
+    読み込み失敗😭
+  </audio>
+  <br>
+<p>音のみで再生することで、通信量を減らすことができます。</p>
+<style>
+.container {
+  width: 80%;
+  margin: 2em auto;
+  padding: 1em;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 0.5em 0;
+}
+
+a {
+  text-decoration: none;
+  color: #007BFF;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+</style>
+</body>
+</html>

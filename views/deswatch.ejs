@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title><%= videoTitle %></title>
+  <meta name="description" content="わかめ">
+  <meta property="og:site_name" content="わかめtube | まっしろ">
+  <meta name="theme-color" content="#ff8181">
+  <link rel="shortcut icon" href="/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="author" content="わかめtube | まっしろ">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/font.css">
+  <link rel="stylesheet" href="/css/plyr.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<header>
+  <div class="banner">
+   <button class="btn btn-link" onclick="window.location.href='/'">ホーム🏠</button>
+   <button class="btn btn-link" onclick="window.location.href='/blog'">お知らせ</button>
+  <button class="btn btn-link" onclick="window.location.href='/blog/help'">ヘルプ</button>
+   <form class="d-flex" action="/s">
+    <input type="text" name="q" class="form-control" placeholder="キーワードを入力..." required>
+   </form>
+    <button class="btn btn-link" style="position: absolute; right: 10px;" onclick="window.location.href='/send'">問い合わせ</button>
+ </div>
+</header>
+<div class="card">
+  <video controls autoplay poster="https://i.ytimg.com/vi/<%= videoId %>/maxresdefault.jpg">
+    <source src="<%= stream_url %>" type="video/mp4">
+    読み込み失敗。ブラウザをアップデートしてどうぞ。
+  </video>
+</div>
+<div class="card">
+  <div class="toolcard-header">
+    <small class="text-muted">ツール　　<button onclick="location.href='/pytdf/<%= videoId %>'">この動画をダウンロードする</button><button onclick="location.href='/ll/<%= videoId %>'">音のみで再生する</button><button onclick="location.href='/www/<%= videoId %>'">高画質で再生する</button></small>
+  </div>
+  <div class="card-channel">
+    <a href="/c/<%= channelId %>">
+    <div class="container">
+    <img src="<%= channelImage %>" alt="画像">
+    <div class="text"><%= channelName %></div>
+      </div></a>
+  </div>
+  <div class="toolcard-header">
+    <small class="text-muted"><%= likeCount %>いいね</small>
+    <small class="text-muted float-right"><%= videoViews %>回再生</small>
+  </div>
+  <div class="toolcard-header">
+    <small class="text-muted">共有用URL: https://wakame02m.glitch.me/login/guest/<%= videoId %></small>
+  </div>
+  <div class="card-body">
+    <h5><%= videoTitle %></h5>
+      <p><%- (videoDes || "").replace(/\n/g, "<br>") %></p>
+  </div>
+</div>
+  <div class="comment-box">
+    <h2>コメント</h2>
+    <div class="iframe-container">
+      <iframe src="https://wakamecomment.glitch.me/wakame/<%= videoId %>" scrolling="yes"></iframe>
+    </div>
+  </div>
+    <br>
+  <div class="tube-box">
+    <div class="iframe-container">
+<iframe src="https://wakamecomment.glitch.me/wakamer/<%= videoId %>" scrolling="yes"></iframe>
+    </div>
+  </div>
+<style>
+	* {
+		--plyr-color-main: #ff8181;
+	}
+
+	a {
+		color: #ff8181;
+	}
+  .card {
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card-header, .card-footer {
+  background-color: #f8f9fa;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+  
+.card-channel {
+  padding: 7px;
+  height: 49px;
+}
+.card-channel p{
+  margin-left: 65px;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-body h5 {
+  margin-bottom: 10px;
+}
+
+.card-body p {
+  margin: 0;
+  white-space: pre-line;
+}
+video {
+  width: 100%;
+  height:100%;
+  }
+
+.toolcard-header {
+  background-color: #FFF5F7;
+  padding: 10px 10px;
+  border-bottom: 0.5px solid #f8e58c;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+}
+        .container {
+            height: 35px;
+            display: flex;
+            align-items: center;
+        }
+
+        .container img {
+            width: 35px;
+            height: 35px;
+        }
+
+        .container .text {
+            margin-left: 10px;
+        }
+    .comment-box {
+      background-color: #ffffff;
+      width: 85%;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: left;
+      box-sizing: border-box;
+    }
+
+    .comment-box h2 {
+      margin: 0 0 10px;
+      font-size: 24px;
+      color: #333;
+    }
+
+    .iframe-container {
+      width: 100%;
+      height: 900px;
+      border: none;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .tube-box {
+      background-color: #ffffff;
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: left;
+      box-sizing: border-box;
+    }
+  </style>
+  </body>
+</html>

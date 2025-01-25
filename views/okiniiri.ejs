@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お気に入り</title>
+    <link rel="stylesheet" href="/css/wakamusic.css">
+    <link rel="stylesheet" href="/css/slide.css">
+</head>
+<body>
+<header>
+    <div class="search-container">
+      <a href="/wakams" style="color: white;"><h1>お気に入りの曲</h1></a>
+    </div>
+    <p>
+      &copy; わかめ02 / 2024
+  </p>
+    <button id="clear-btn" class="save-load-btn">クリア</button>
+    <button id="save-btn" class="save-load-btn">セーブ</button>
+    <button id="load-btn" class="save-load-btn">ロード</button>
+</header>
+
+<main>
+  <% if (tracks && tracks.length > 0) { %>
+        <ul>
+            <% tracks.reverse().forEach(track => { %>
+                <li>
+                    <img src="<%= track.artwork_url %>" alt="Artwork">
+                    <div class="track-info">
+                        <p class="track-title"><%= track.title %></p>
+                        <p class="track-artist">お気に入り</p>
+                    </div>
+                    <button class="favorite-btn" data-id="<%= track.id %>" onclick="toggleFavorite('<%= track.artwork_url %>', '<%= track.title %>', '<%= track.id %>')">❤️</button>
+                    <button class="play-btn" data-track-id="<%= track.id %>">Play</button>
+                </li>
+            <% }) %>
+        </ul><br><br><br><br>
+   <% } else { %>
+        <p>お気に入り登録された曲はありません</p>
+    <% } %>
+</main>
+  
+<div class="player-bar" id="player-bar">
+    <iframe id="sc-player" scrolling="no" frameborder="no"></iframe>
+</div>
+
+<script>
+document.querySelectorAll('.play-btn').forEach(element => {
+        element.addEventListener('click', function(e) {
+            e.preventDefault();
+            const trackId = e.target.getAttribute('data-track-id');
+            playTrack(trackId);
+        });
+});
+function playTrack(trackId) {
+        const playerBar = document.getElementById('player-bar');
+        const player = document.getElementById('sc-player');
+
+        player.src = `https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${trackId}&color=%23ff5500&auto_play=true`;
+
+        playerBar.style.display = 'flex';
+}
+  
+function getFavoritesFromCookies() {
+    const cookieName = 'wakamemusicfavorites';
+    const cookieValue = document.cookie.split('; ').find(row => row.startsWith(cookieName));
+    
+    if (cookieValue) {
+        try {
+            return JSON.parse(decodeURIComponent(cookieValue.split('=')[1]));
+        } catch (error) {
+            console.error('Error parsing favorites cookie:', error);
+            return [];
+        }
+    }
+    return [];
+}
+
+function setCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+function updateFavoriteButton(trackId) {
+    const favorites = getFavoritesFromCookies();
+    const favoriteBtn = document.querySelector(`button[data-id='${trackId}']`);
+
+    if (favorites.some(track => track.id === trackId)) {
+        favoriteBtn.classList.add('active');
+    } else {
+        favoriteBtn.classList.remove('active');
+    }
+}
+  
+function toggleFavorite(artwork_url, title, id) {
+    let favorites = getFavoritesFromCookies();
+
+    const favoriteIndex = favorites.findIndex(track => track.id === id);
+
+    if (favoriteIndex === -1) {
+        favorites.push({ artwork_url, title, id });
+        alert('お気に入りに追加しました！');
+    } else {
+        favorites.splice(favoriteIndex, 1);
+        alert('お気に入りを解除しました！');
+    }
+
+    document.cookie = `wakamemusicfavorites=${encodeURIComponent(JSON.stringify(favorites))}; path=/; max-age=31536000`;
+
+    updateFavoriteButton(id);
+}
+
+document.getElementById('save-btn').addEventListener('click', function() {
+    alert("セーブコードを表示するページを開きます。");
+    window.open('/wakamc/f', '_blank'); 
+});
+
+document.getElementById('load-btn').addEventListener('click', function() {
+    const input = prompt("お気に入りのセーブコードを入力してください");
+    if (input) {
+        try {
+            const parsedInput = JSON.parse(input); 
+            saveInputToFavorites(parsedInput);
+        } catch (e) {
+            alert('入力形式が正しくありません。セーブコードをコピペしやがれ下さい。');
+        }
+    }
+});
+
+function saveInputToFavorites(inputData) {
+    let favorites = getFavoritesFromCookies();
+
+    inputData.forEach(data => {
+        const existingTrack = favorites.find(track => track.id === data.id);
+        if (!existingTrack) {
+            favorites.push({
+                artwork_url: data.artwork_url,
+                title: data.title,
+                id: data.id
+            });
+        }
+    });
+    setFavoritesToCookies(favorites);
+}
+  
+function setFavoritesToCookies(favorites) {
+    document.cookie = "wakamemusicfavorites=; path=/; max-age=0";
+    document.cookie = `wakamemusicfavorites=${encodeURIComponent(JSON.stringify(favorites))}; path=/; max-age=31536000`;
+    alert('データを読み込みました！');
+}
+  
+function clearFavoritesCookie() {
+    document.cookie = 'wakamemusicfavorites=; path=/; max-age=0';
+    alert('お気に入りが解除されました');
+}
+
+document.getElementById('clear-btn').addEventListener('click', function() {
+    let userConfirmed = confirm('全てのお気に入りを解除します。よろしいですか？');
+      if (userConfirmed) {
+        let userConfirmed = confirm('全てのお気に入りを解除します。本当の本当によろしいですか？');
+          if (userConfirmed) {
+            clearFavoritesCookie();
+          } else {
+            alert('キャンセルしました');
+          }
+      } else {
+        alert('キャンセルしました');
+      }
+});
+  
+document.querySelectorAll('.favorite-btn').forEach(btn => {
+    const trackId = btn.getAttribute('data-id');
+    updateFavoriteButton(trackId);
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>わかめtube</title>
+  <meta name="description" content="まっしろになってゆく">
+  <meta property="og:title" content="わかめtube">
+  <meta property="og:description" content="まっしろになってゆく">
+  <meta property="og:site_name" content="わかめtube | まっしろになっていく">
+  <meta property="og:image" content="https://cdn.glitch.global/5b8b419f-e61e-4533-9e15-5b2805b88d0e/IMG_1111_Original.jpeg">
+  <meta name="theme-color" content="#ff8181">
+  <link rel="shortcut icon" href="https://cdn.glitch.global/5b8b419f-e61e-4533-9e15-5b2805b88d0e/IMG_1111_Original.jpeg">
+  <link rel="icon" href="https://cdn.glitch.global/5b8b419f-e61e-4533-9e15-5b2805b88d0e/IMG_1111_Original.jpeg" type="image/x-icon">
+  <meta name="author" content="わかめtube | まっしろ">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/font.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="banner">
+      <button class="btn btn-link" onclick="window.location.href='/wakameokini'">お気に入り<br>💫</button>
+      <button class="btn btn-link" onclick="window.location.href='/setting'">設定<br>⚙️</button>
+      <button class="btn btn-link" onclick="window.location.href='/blog'">お知らせ<br>📝</button>
+      <button class="btn btn-link" onclick="window.location.href='/send'">問い合わせ<br>✉️</button>
+      <button class="btn btn-link" onclick="window.location.href='/wakams'">曲を聴く<br>🎶</button>
+      <form action="/logout" method="post">
+        <button type="submit" class="btn btn-link">ログアウト<br>🚪</button>
+      </form>
+    </div>
+  </header>
+
+  <main class="container text-center">
+    <div class="search-bar">
+      <form action="/s" method="get">
+        <input type="text" name="q" id="searchbox" class="form-control" placeholder="キーワードを入力..." required>
+        <button type="submit" class="btn btn-search">検索(けんさく)</button>
+      </form>
+    </div>
+  </main>
+  <br><br>
+  <footer class="text-center">
+    <a href="/proxy"><span class="mt-5 mb-3 text-muted">WAO (プロキシ)</span></a><br><br><br>
+    <a href="/app"><span class="mt-5 mb-3 text-muted">app🎮</span></a><br><br><br>
+    <a href="/wakams"><span class="mt-5 mb-3 text-muted">わかめMusic🎶</span></a><br><br><br>
+    <a href="/tool"><span class="mt-5 mb-3 text-muted">ツール🧰</span></a><br><br><br>
+    <a href="/blog/list"><span class="mt-5 mb-3 text-muted">ブログ</span></a><br><br><br>
+    <a href="/blog/help"><span class="mt-5 mb-3 text-muted">ヘルプ</span></a><br><br><br>
+    <a href="/neta"><span class="mt-5 mb-3 text-muted">ネタBOX</span></a><br>
+    <p>
+      おふざけ機能のリストです。
+    </p>
+  </footer>
+
+  <iframe src="https://wakamecm.glitch.me" style="border: none; margin: 0; height: 3px; width: 8px;"></iframe>
+  
+  <div class="hover-target">
+    <div class="profile-card">
+      <a href="/blog/wakame02">
+        <img src="https://cdn.glitch.global/441c91ae-2a7f-4142-9ffb-ab0c7066dfa1/IMG_1281.png?v=1718682861752" alt="アイコン">
+        <div class="name">わかめ02</div>
+        <div class="description">わーい</div>
+      </a>
+    </div>
+  </div>
+<div class="character" id="character"></div>
+  <style>
+    header {
+      background-color: #333;
+      color: white;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    .banner {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn {
+      background: none;
+      background-color: #333;
+      border: none;
+      color: white;
+      cursor: pointer;
+      padding: 10px 15px;
+      transition: background 0.3s, transform 0.3s;
+      border-radius: 5px;
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    .search-bar {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .form-control {
+      padding-right: 80px;
+    }
+
+    .btn-search {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      border-radius: 0;
+    }
+
+    .hover-target {
+      display: inline-block;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .profile-card {
+      display: none;
+      left: 50%;
+      border-radius: 10px;
+      max-width: 300px;
+      text-align: center;
+    }
+
+    .hover-target:hover .profile-card {
+      display: block;
+    }
+
+    .profile-card img {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+    }
+
+    .profile-card .name {
+      font-size: 1.5em;
+      margin: 10px 0;
+    }
+
+    .profile-card .description {
+      font-size: 1em;
+      color: #666;
+    }
+    .character {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background-image: url('https://cdn.glitch.global/5b8b419f-e61e-4533-9e15-5b2805b88d0e/IMG_2028.png');
+      background-size: cover;
+      background-position: center;
+      pointer-events: none;
+      transition: transform 0.1s ease-out;
+    }
+  </style>
+
+<script>
+$(function () {
+    $('#searchbox').autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: '/suggest',
+                data: { keyword: request.term },
+                success: function (data) {
+                    response(data);
+                }
+            });
+        },
+        delay: 1,
+        select: function (event, ui) {
+            $('#searchbox').val(ui.item.value);
+            $('form').submit();
+        }
+    });
+});
+const characters = [
+  {
+    name: 'わかめくん', 
+    image: 'https://cdn.glitch.global/5b8b419f-e61e-4533-9e15-5b2805b88d0e/IMG_1111_Original.jpeg?v=1731300640531',
+    sayings: [
+      '#和布を崇めろ',
+      'モンストの「マムル」ってキャラ、めちゃ可愛くないですか！？かわいいかわいい(๑˃̵ᴗ˂̵)'
+    ]
+  },
+    {
+    name: '和布', 
+    image: 'https://cdn.glitch.global/441c91ae-2a7f-4142-9ffb-ab0c7066dfa1/IMG_1281.png?v=1718682861752',
+    sayings: [
+      '買ったはずのものが、家に帰って確認したら消えてる…もしや、家の中に別の世界があるのか？',
+      '『ちょっとだけ』って言ってダラダラする自分を見て、『これが人生』と思うときがある。',
+      '未来でロボットが家事をしてくれるって聞いたけど、実際は自分が未来のロボットになって、みんなに家事をしてる気がする。',
+      '『自分、今日はよくやったな』って思う瞬間、実はただゴミを捨てただけだって気づいた。で、ちょっと感動してる自分が怖い。',
+      'ここにいるってことは、すでに選ばれたってことだよ。',
+      '未来の自分から手紙が届いたら、『今が一番大事な瞬間だよ』って言われる気がする。でも実際は、今の自分が迷っているだけだったり。',
+      'もし時間旅行ができたなら、過去の自分に『ここでやり直せ』って言うと思う。でも、過去の自分は『いや、それは無理』って答える気がする。',
+      '人生は選択の連続って言うけど、その選択肢を選んだ時点で、すでに『次の選択肢』が決まってるのかもしれない。',
+      '自分が「普通だ」って思うことを、同じように「普通だ」って思う人って何人居るのかな...'
+    ]
+  },
+  {
+    name: 'カスクマ', 
+    image: 'https://cdn.glitch.global/5b8b419f-e61e-4533-9e15-5b2805b88d0e/IMG_1958.jpeg?v=1731553654429',
+    sayings: [
+      '私はフリー素材ではありません！',
+      '春雨ちゃんかわいい♡',
+      'あっ、そこの君！対策wikiバッヂは持った？'
+    ]
+  },
+  {
+    name: '春雨', 
+    image: 'https://cdn.glitch.global/5b8b419f-e61e-4533-9e15-5b2805b88d0e/IMG_2022.jpeg?v=1731554897469',
+    sayings: [
+      '誰ですかあなた',
+      '独裁サイコー！！',
+      'こんなサイト見てないでR Sound Design様の曲を聴け。'
+    ]
+  },
+  {
+    name: '靴下', 
+    image: 'https://cdn.glitch.global/5b8b419f-e61e-4533-9e15-5b2805b88d0e/IMG_2098.jpeg?v=1732595038358',
+    sayings: [
+      'ロック・クロック・六九',
+      'カマスゾーン'
+    ]
+  },
+  {
+    name: 'ネット中毒者', 
+    image: 'https://cdn.glitch.global/5b8b419f-e61e-4533-9e15-5b2805b88d0e/IMG_2023.png?v=1731555795771',
+    sayings: [
+      'スマホの充電が無くなる瞬間、まるで私の心の中の希望が消えたみたいだ。',
+      '最初にWi-Fiを設定したとき、これで私は世界の王になるんだと思った。',
+      '『運動しないと』って思っても、ついついテレビの前でソファに座ってしまう。もはやそれが運動だと思ってる。',
+      'ネットが使えなくなると、本当に不安になる。『今、何が起きてるんだろう？』って、実際には何も変わらないのにね。',
+      'リアル世界で何か新しいことを始めようとするけど、『このこと、ネットで調べてからにしよう』って思って、結局何も始められない。',
+      'ブログやレビューを読んでると、『こんなに自分の人生に役立つ情報があるんだ！』って感動するけど、実際に何も試してないから、ただの理論だよね。',
+      'インターネットの中では、みんなが同じ価値観を持っている気がする。でも、外に出たら誰も私のことを理解してくれないんだよね。'
+    ]
+  }
+];
+function showRandomCharacter() {
+  const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
+  const randomSaying = randomCharacter.sayings[Math.floor(Math.random() * randomCharacter.sayings.length)];
+
+  const characterPopup = document.createElement('div');
+  characterPopup.style.position = 'fixed';
+  characterPopup.style.bottom = '20px';
+  characterPopup.style.right = '20px';
+  characterPopup.style.backgroundColor = 'lightgray';
+  characterPopup.style.padding = '10px';
+  characterPopup.style.borderRadius = '10px';
+  characterPopup.style.boxShadow = '0px 4px 6px rgba(0, 0, 0, 0.1)';
+  characterPopup.style.display = 'flex';
+  characterPopup.style.alignItems = 'center';
+
+  const img = document.createElement('img');
+  img.src = randomCharacter.image;
+  img.alt = randomCharacter.name;
+  img.style.width = '50px'; 
+  img.style.marginRight = '10px';
+
+  const text = document.createElement('span');
+  text.textContent = `${randomCharacter.name}: ${randomSaying}`;
+
+  characterPopup.appendChild(img);
+  characterPopup.appendChild(text);
+
+  document.body.appendChild(characterPopup);
+
+  setTimeout(() => {
+    characterPopup.remove();
+  }, 6000);
+}
+
+window.addEventListener('load', () => {
+  showRandomCharacter();
+  setInterval(showRandomCharacter, 7000);
+});
+  
+const character = document.getElementById('character');
+
+    document.addEventListener('mousemove', (event) => {
+      const x = event.clientX;
+      const y = event.clientY;
+      character.style.left = `${x - 25}px`;
+      character.style.top = `${y - 25}px`;
+    });
+
+    document.addEventListener('touchmove', (event) => {
+      const touch = event.touches[0];
+      const x = touch.clientX;
+      const y = touch.clientY;
+      character.style.left = `${x - 25}px`;
+      character.style.top = `${y - 25}px`;
+    }, { passive: false });
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title><%= channel.author.name %></title>
+  <meta name="description" content="<%= channel.description || channel.descriptionShort %>">
+  <meta property="og:title" content="<%= channel.author.name %>'s Channel">
+  <meta property="og:description" content="<%= channel.description || channel.descriptionShort || "" %>">
+  <meta property="og:site_name" content="わかめtube | まっしろ">
+  <meta property="og:image" content="<%= channel.author.bestAvatar.url.slice(21) %>">
+  <meta name="theme-color" content="#ff8181">
+  <link rel="shortcut icon" href="<%= channel.author.bestAvatar.url.slice(21) %>">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="author" content="わかめtube | まっしろになっていく">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="banner">
+      <button class="btn btn-link" onclick="window.location.href='/'">ホーム🏠</button>
+      <button class="btn btn-link" onclick="window.location.href='/blog'">お知らせ</button>
+      <!-- 他のボタンもここに追加できます -->
+      <a href="/" class="navbar-brand">
+        <img width="30" src="<%= channel.author.bestAvatar.url.slice(21) %>"> <%= channel.author.name %>   
+      </a>
+      <button class="btn btn-link" style="position: absolute; right: 10px;" onclick="window.location.href='/send'">問い合わせ</button>
+
+    </div>
+  </header>
+  <div class="results">
+    <% channel.items.forEach(video => { %>
+    <div class="result-item"> 
+      <a href="/w/<%= video.id %>"><img src="<%= video.bestThumbnail.url.slice(19) %>" alt="<%= video.title %>"></a>
+      <div class="channel-name"><%= video.author.name %></div>
+      <div class="video-title"><%= video.title %></div>
+      <div class="video-meta"><%= video.duration %></div>
+    </div>
+    <% }); %>
+  </div>
+<div class="pagination">
+  <% if (page > 1) { %> <a class="btn position-absolute" style="left: 0; color: white; background-color: #ff8181;" href="/c/<%= channel.id %>?p=<%= page-1 %>">前のページ</a> <% } %>
+  <a class="btn position-absolute" style="right: 0; color: white; background-color: #ff8181;" href="/c/<%= channel.id %>?p=<%= page+1 %>">次のページ</a>
+ </div>
+</body>
+
+</html>

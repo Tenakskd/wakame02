@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ログイン</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/0/07/Courtyard_Gymnasium_No._586_morning.jpg') no-repeat center center fixed;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        input[type="username"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 92%;
+        }
+        input[type="password"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 92%;
+        }
+        button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        .error {
+            color: red;
+            margin-bottom: 20px;
+        }
+        .note {
+            color: #777;
+            margin-top: 20px;
+        }
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+}
+
+a:hover {
+    color: #FFA6C9;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>ログイン</h2>
+        <% if (error) { %>
+            <p class="error"><%= error %></p>
+        <% } %>
+            <div class="form-group">
+                <label for="password">名前:</label>
+                <input type="username">
+            </div>
+        <form action="/login" method="post">
+            <div class="form-group">
+                <label for="password">パスワード:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">送信</button>
+        </form>
+        <p class="note">ログイン状態は5日間保持されます。</p>
+          <a href="/login/forgot">パスワードを忘れた場合</a><br>
+          <a href="/login/if">ログイン済みの場合</a>
+    </div>
+</body>
+</html>

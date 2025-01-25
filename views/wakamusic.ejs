@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>わかめ🎶 - <%= query %></title>
+    <link rel="stylesheet" href="/css/wakamusic.css">
+    <link rel="stylesheet" href="/css/slide.css">
+</head>
+<body>
+
+<header>
+    <div class="search-container">
+        <form action="/wakamc" method="get">
+            <input type="text" name="q" placeholder="曲を探す" required value="<%= query %>">
+            <button type="submit">🔍</button>
+        </form>
+    </div>
+    <p>
+      &copy; わかめ02 / 2024
+  </p>
+    <button class="btn btn-link" onclick="window.location.href='/okiniiri'">お気に入り</button>
+    <button id="action-btn">
+        <img src="https://cdn.glitch.global/441c91ae-2a7f-4142-9ffb-ab0c7066dfa1/IMG_1281.png?v=1718682861752" alt="User" width="50px" />
+    </div>
+</header>
+
+<nav id="side-menu" class="side-menu">
+    <ul>
+        <li><a href="/">ホーム</a></li>
+        <li><a href="/wakams">わかめMusic</a></li>
+        <li><a href="/blog/wakamc">わかめMusicの使い方</a></li>
+        <li><a href="/famous">曲を聴く(旧サイト)</a></li>
+        <li><a href="/send" target="_blank">お問い合わせ</a></li>
+        <li><a href="/blog/up" target="_blank">アップデートを確認</a></li>
+    </ul>
+</nav>
+<div id="overlay" class="overlay"></div>
+
+<main>
+    <% if (tracks && tracks.length > 0) { %>
+        <ul>
+            <% tracks.forEach(track => { %>
+                <li>
+                    <img src="<%= track.artwork_url %>" alt="Artwork">
+                    <div class="track-info">
+                        <p class="track-title"><%= track.title %></p>
+                        <p class="track-artist">by <%= track.username %></p>
+                    </div>
+                    <button class="favorite-btn" data-id="<%= track.id %>" onclick="toggleFavorite('<%= track.artwork_url %>', '<%= track.title %>', '<%= track.id %>')">❤️</button>
+                    <button class="play-btn" data-track-id="<%= track.id %>">Play</button>
+                </li>
+            <% }) %>
+        </ul>
+        <a href="/tool/春雨"><ul>
+                <li>
+                    <img src="https://appdata.chatwork.com/avatar/xArwvEGd7D.rsz.jpg" alt="Artwork">
+                    <div class="track-info">
+                        <p class="track-title">絶妙に気持ち悪い曲 - 春雨</p>
+                        <p class="track-artist">超おすすめ！これ聞いたことないやつ、人生損してる。マジで</p>
+                    </div>
+                </li>
+        </ul></a><br><br><br><br>
+    <% } else { %>
+        <% if (typeof query !== 'undefined' && query.length >= 2) { %>
+           <p>曲が見つかりません。</p>
+              <% } else { %>
+           <p>上のやつで検索してみよう。</p>
+        <% } %>
+        <br><br><br>
+        <h2>
+          おすすめ
+          </h2>
+        <ul>
+                <li>
+                    <img src="https://i1.sndcdn.com/artworks-uWLye4ipN2X1b3Dj-In7BaA-t500x500.jpg" alt="Artwork">
+                    <div class="track-info">
+                        <p class="track-title">【Kanaria】BRAIN</p>
+                        <p class="track-artist">おすすめ</p>
+                    </div>
+                    <button class="favorite-btn" data-id="1933308584" onclick="toggleFavorite('https://i1.sndcdn.com/artworks-uWLye4ipN2X1b3Dj-In7BaA-t500x500.jpg', '【Kanaria】BRAIN', '1933308584')">❤️</button>
+                    <button class="play-btn" data-track-id="1933308584">Play</button>
+                </li>
+        </ul>
+        <ul>
+                <li>
+                    <img src="https://i1.sndcdn.com/artworks-WSedAuubWHQc5zY1-maz2UQ-t500x500.jpg" alt="Artwork">
+                    <div class="track-info">
+                        <p class="track-title">くうになる - MIMI</p>
+                        <p class="track-artist">おすすめ</p>
+                    </div>
+                    <button class="favorite-btn" data-id="1196951182" onclick="toggleFavorite('https://i1.sndcdn.com/artworks-WSedAuubWHQc5zY1-maz2UQ-t500x500.jpg', 'くうになる - MIMI', '1196951182')">❤️</button>
+                    <button class="play-btn" data-track-id="1196951182">Play</button>
+                </li>
+        </ul>
+        <ul>
+                <li>
+                    <img src="https://i1.sndcdn.com/artworks-quM3Oj4I38dfVKpU-9Lqgzw-t500x500.jpg" alt="Artwork">
+                    <div class="track-info">
+                        <p class="track-title">リライトザサーガ - オルサガOP</p>
+                        <p class="track-artist">おすすめ</p>
+                    </div>
+                    <button class="favorite-btn" data-id="1196951182" onclick="toggleFavorite('https://i1.sndcdn.com/artworks-quM3Oj4I38dfVKpU-9Lqgzw-t500x500.jpg', 'リライトザサーガ', '1190533618')">❤️</button>
+                    <button class="play-btn" data-track-id="1190533618">Play</button>
+                </li>
+        </ul>
+    <% } %>
+</main>
+
+<div class="player-bar" id="player-bar">
+    <iframe id="sc-player" scrolling="no" frameborder="no"></iframe>
+</div>
+
+<script>
+    document.querySelectorAll('.play-btn').forEach(element => {
+        element.addEventListener('click', function(e) {
+            e.preventDefault();
+            const trackId = e.target.getAttribute('data-track-id');
+            playTrack(trackId);
+        });
+    });
+
+    function playTrack(trackId) {
+        const playerBar = document.getElementById('player-bar');
+        const player = document.getElementById('sc-player');
+
+        player.src = `https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${trackId}&color=%23ff5500&auto_play=true`;
+
+        playerBar.style.display = 'flex';
+    }
+  
+const menuBtn = document.getElementById('action-btn');
+const sideMenu = document.getElementById('side-menu');
+const overlay = document.getElementById('overlay');
+
+function toggleMenu() {
+    sideMenu.classList.toggle('open');
+    overlay.classList.toggle('active');
+}
+
+menuBtn.addEventListener('click', toggleMenu);
+
+overlay.addEventListener('click', toggleMenu);
+  
+function toggleFavorite(artwork_url, title, id) {
+    let favorites = getFavoritesFromCookies();
+
+    const favoriteIndex = favorites.findIndex(track => track.id === id);
+
+    if (favoriteIndex === -1) {
+        favorites.push({ artwork_url, title, id });
+        alert('お気に入りに追加しました！');
+    } else {
+        favorites.splice(favoriteIndex, 1);
+        alert('お気に入りを解除しました！');
+    }
+
+    document.cookie = `wakamemusicfavorites=${encodeURIComponent(JSON.stringify(favorites))}; path=/; max-age=31536000`;
+
+    updateFavoriteButton(id);
+}
+
+function getFavoritesFromCookies() {
+    const favoritesCookie = document.cookie.split('; ').find(row => row.startsWith('wakamemusicfavorites='));
+    if (favoritesCookie) {
+        const cookieValue = favoritesCookie.split('=')[1];
+        try {
+            return JSON.parse(decodeURIComponent(cookieValue));
+        } catch (error) {
+            console.error('Error parsing favorites cookie:', error);
+            return [];
+        }
+    }
+    return [];
+}
+
+function updateFavoriteButton(trackId) {
+    const favorites = getFavoritesFromCookies();
+    const favoriteBtn = document.querySelector(`button[data-id='${trackId}']`);
+
+    if (favorites.some(track => track.id === trackId)) {
+        favoriteBtn.classList.add('active');
+    } else {
+        favoriteBtn.classList.remove('active');
+    }
+}
+document.querySelectorAll('.favorite-btn').forEach(btn => {
+    const trackId = btn.getAttribute('data-id');
+    updateFavoriteButton(trackId);
+});
+</script>
+
+</body>
+</html>

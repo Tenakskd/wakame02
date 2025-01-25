@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title><%= title %> - わかめtube</title>
+  <meta name="description" content="まっしろになっていく">
+  <meta property="og:title" content="わかめtube">
+  <meta property="og:description" content="まっしろになっていく">
+  <meta property="og:site_name" content="わかめtube | まっしろ">
+  <meta property="og:image" content="/banner.png">
+  <meta name="theme-color" content="#ff8181">
+  <link rel="shortcut icon" href="/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="author" content="わかめtube | まっしろ">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/font.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+ <header>
+    <div class="banner">
+      <button class="btn btn-link" onclick="window.location.href='/'">ホーム🏠</button>
+      <button class="btn btn-link" onclick="window.location.href='/blog'">お知らせ</button>
+      <!-- 他のボタンもここに追加できます -->
+      <form class="d-flex" action="/s">
+        <input type="text" name="q" class="form-control" placeholder="キーワードを入力..." required>
+      </form>
+      <button class="btn btn-link" style="position: absolute; right: 10px;" onclick="window.location.href='/send'">問い合わせ</button>
+    </div>
+  </header>
+  <br>
+  <div id="error">
+    <p class="fs-1"><%= title %></p>
+    <p class="lh-1">このページは削除されているか、存在していません。問題がありましたら「<a href="/send">問い合わせ</a>」からどうぞ。</p><br>
+    <button onclick="location.href='/'">ホームに戻る</button>
+  </div>
+  <style>
+	a {
+		color: #ff8181;
+	}
+	
+	#error {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+  </style>
+</body>
+</html>
