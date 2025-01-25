@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ページ作成</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
+    <style>
+        .CodeMirror {
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        h2 {
+            margin-top: 20px;
+        }
+        .placeholder {
+            position: absolute;
+            color: #aaa;
+            pointer-events: none;
+            margin-left: 10px;
+            margin-top: 10px;
+            transition: opacity 0.2s;
+            display: none; /* 初期は非表示 */
+        }
+    </style>
+</head>
+<body>
+    <h1>簡単Webページ作成</h1>
+    <h2>
+      使い方
+  </h2>
+    <p>
+      <a href="/blog/apage">こっちをみましょ</a>
+  </p>
+  <h2>
+    ページ内容
+  </h2>
+    <p>
+      あなたの作りたいページのhtmlを入力して下さい。htmlが書けない？大丈夫。ページの内容が書けたら、適当にAIに
+      「この文章をシンプルでスタイルの良いhtmlにして」とか言ったらしてくれると思います多分。それをここにコピペしちゃって下さい。
+    </p>
+    <div style="position: relative;">
+        <textarea id="htmlInput" placeholder="ここにhtmlを入力"></textarea>
+        <div class="placeholder" id="placeholder">ここにHTMLを入力してください...</div>
+    </div>
+  <h2>
+    サイトID
+  </h2>
+    <p>
+      あなたのサイトのIDを英数字で入力します。かっこ良く、他の人とかぶらないようなものが良いですね！
+    </p>
+    <input type="text" id="siteId" placeholder="サイトのIDを入力" required>
+    <button id="submitBtn">送信</button>
+    <h2 id="resultMessage" style="display:none;">作成されたサイトのURL: <span id="siteUrl"></span></h2>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/xml/xml.min.js"></script>
+    <script>
+        const editor = CodeMirror.fromTextArea(document.getElementById('htmlInput'), {
+            lineNumbers: true,
+            mode: "htmlmixed",
+        });
+
+        const placeholder = document.getElementById('placeholder');
+
+        document.getElementById('submitBtn').addEventListener('click', async function() {
+            const htmlContent = editor.getValue();
+            const siteId = document.getElementById('siteId').value;
+
+            if (!htmlContent || !siteId) {
+                alert('HTMLとIDを両方入力してください。');
+                return;
+            }
+
+            try {
+                const response = await fetch('/savepage', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ id: siteId, html: htmlContent }),
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || '不明なエラーが発生しました');
+                }
+                const data = await response.json();
+                document.getElementById('siteUrl').textContent = data.siteUrl;
+                document.getElementById('resultMessage').style.display = 'block';
+            } catch (error) {
+                alert('エラーが発生しました: ' + error.message);
+                console.error('Fetchエラー:', error);
+            }
+        });
+    </script>
+</body>
+</html>
