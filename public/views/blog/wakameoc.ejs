@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>わかめのおいしい食べ方</title>
+  <link rel="stylesheet" href="/css/wakameblog.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>わかめおいしい！</h1>
+      <p>わかめぇ</p>
+    </div>
+  </header>
+
+  <nav>
+    <div class="container">
+      <ul>
+        <li><a href="/">ホーム</a></li>
+        <li><a href="/tool/wakameget">わかめおいしい！</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <h2>わかめおいしい！</h2>
+      <p>
+        こんにちは！わかめ02です。静的サイトに特攻を持った「わかめおいしい！」と言うものを作ってみました！<br>
+        使い方はURL入力して「GO！」押すだけです。べりーいーじー。
+      </p>
+      <h2>
+        仕組み
+      </h2>
+      <p>
+        URLを入力して「GO！」を押すと、そのサイトに対してリクエストを行いファイルを取得します。<br>
+        次に、そのファイル内を解析し、全てのリンクをわかめ仕様に変更します。<br>
+        そして、そのサイトが読み込んでいるimgタグ全てを解析し、minigetを用いて画像をサーバーサイドに引っこ抜いてきます。<br>
+        最後に、そのサイトが読み込んでいるjavascriptと css全てを無理やり取得して、動作するように形を変えてから読みこみます。<br><br>
+        要は「そのサイトの全部引っこ抜いて表示しようぜ」って言う設計となっています。頭悪い言うな()
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>こ↑こ↓</p>
+    </div>
+  </footer>
+</body>
+</html>
