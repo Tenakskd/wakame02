@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>わかめ</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+ <header>
+    <div class="banner">
+      <button class="btn btn-link" onclick="window.location.href='/'">ホーム🏠</button>
+      <button class="btn btn-link" onclick="window.location.href='/blog'">お知らせ</button>
+      <form class="d-flex" action="/s">
+        <input type="text" name="q" class="form-control" placeholder="キーワードを入力..." required>
+      </form>
+      <button class="btn btn-link" style="position: absolute; right: 10px;" onclick="window.location.href='/send'">問い合わせ</button>
+    </div>
+  </header>
+    <ul>
+        <li><a href="/tool/android">Android</a></li>
+        <small>クッソラグいスマホで遊べます</small>
+        <li><a href="/tool/calculator">電卓</a></li>
+        <small>ただの電卓</small>
+        <li><a href="/urls">URLでYouTube動画を探す</a></li>
+        <small>URLでYouTube動画を再生できます。コメントのみの取得も可能</small>
+        <li><a href="/tool/thumb">サムネ画像を取得</a></li>
+        <small>YouTubeのサムネイルを取得します</small>
+        <li><a href="/tool/html">HTMLを取得</a></li>
+        <small>URLを入力して下さい。そのページのHTMLファイルを抜き去ります。</small>
+        <li><a href="/tool/htmlproxy">わかめproxy</a></li>
+        <small>指定されたサイトをスピーディーに表示します。<br>ただし、見た目の全てが壊れます。</small>
+        <li><a href="/tool/wakameget">わかめおいしい！</a></li>
+        <small>わかめproxyの強化版。の試作機。開発中...</small>
+        <li><a href="/tool/mini">小さい画面に埋め込む</a></li>
+        <small>開発中...</small>
+    </ul>
+</body>
+</html>
