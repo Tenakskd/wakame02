@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>edu</title>
+    <link rel="stylesheet" href="/css/wakastyles.css">
+</head>
+<body>
+  <header>
+    <div class="banner">
+      <button class="btn btn-link" onclick="window.location.href='/'">ホーム<br>🏠</button>
+      <button class="btn btn-link" onclick="window.open('/edu/site', '_blank')">サイトのテンプレート</button>
+    </div>
+  </header>
+  <form id="IdForm">
+    <input type="text" id="Idtext" placeholder="作成したいページのIdを入力..." required>
+    <button type="submit" name="action">作成する</button><br>
+    <p id="errorMessage" style="color: red;"></p>
+</form>
+<section class="terms">
+  <h2>作るときの注意</h2>
+  <ul>
+    <strong>ここで指定したIdはサイトのURLに使用されます。「apple」を指定した場合、https://(サイトのURL)/wk/appleと言う形式になります</strong>
+    <li>URLに使用できない文字はIdに使用できません</li>
+    <li>作成中にページを離れないで下さい。入力中のデータが失われてしまいます。</li>
+    <li>コーディングを行う際は他のサイトのエディターを利用することをオススメします。</li>
+    <li>「あ」とか、意味不明なページは消していきます(宣言)</li>
+    <li>個人情報を含めないで下さい。あなたが作成するサイトは公開した段階ですぐに「誰でもみれる」状態になります。</li>
+    <li>他のサイトで利用しているパスワードは極力使わないで下さい。</li>
+    <li>パスワードは誰にも教えず大切に保管して下さい。パスワードがあれば、あなたのサイトを編集できてしまいます。</li>
+  </ul>
+</section>
+<script>
+document.getElementById('IdForm').addEventListener('submit', async function(event) { // asyncを追加
+    event.preventDefault();
+    const Id = document.getElementById('Idtext').value;
+    const idPattern = /^[a-zA-Z0-9-_]+$/;
+    const errorMessageElement = document.getElementById('errorMessage');
+    errorMessageElement.textContent = '';
+    if (!idPattern.test(Id)) {
+        errorMessageElement.textContent = 'このIDは使用できません。';
+        return;
+    }
+    try {
+        const response = await fetch(`/edu/request?path=/req/${Id}`);
+        if (!response.ok) {
+            errorMessageElement.textContent = '通信エラーが発生しました';
+            return;
+        }
+        const { p } = await response.json();
+        if (p === "yes") {
+            errorMessageElement.textContent = 'このIdはすでに使用されています';
+            return;
+        }
+        window.location.href = `/edu/create/${Id}`;
+    } catch (err) {
+        console.error('リクエストエラー:', err);
+        errorMessageElement.textContent = '予期しないエラーが発生しました。';
+    }
+});
+
+    </script>
+</body>
+</html>
