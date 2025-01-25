@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ページテンプレ</title>
+  <link rel="stylesheet" href="/css/edustyles.css">
+</head>
+<body>
+  <header>
+    <div class="banner">
+      <button class="btn btn-link" onclick="window.location.href='/edu'">ホーム<br>🏠</button>
+      <button class="btn btn-link" id="helpButton">ヘルプ</button>
+    </div>
+  </header>
+<div id="overlay" class="overlay"></div>
+  <div class="container">
+    <h1>テンプレートを閲覧中</h1>
+    <form id="createForm">
+      <div class="form-group">
+        <label for="htmlInput">HTML内容</label>
+        <textarea id="htmlInput" name="htmlInput" placeholder="HTMLコードを入力またはファイルをドラッグしてください..." required>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ぺーじたいとる</title>
+  <style>* {margin: 0; padding: 0; box-sizing: border-box;} body {font-family: "Arial", sans-serif; background-color: #f4f4f4; color: #333; line-height: 1.6; padding-top: 50px;} header {text-align: center; padding: 30px 0;} h1 {font-size: 48px; color: #50b3a2; letter-spacing: 2px;} .line {width: 60%; height: 2px; background-color: #50b3a2; margin: 0 auto; position: relative;} .half-circle {position: absolute; left: -15px; top: -5px; width: 30px; height: 30px; border-radius: 50%; background-color: #50b3a2;} .button-container {text-align: center; margin-top: 40px;} .btn {background-color: #50b3a2; color: white; font-size: 16px; padding: 10px 20px; border-radius: 6px; border: none; cursor: pointer; transition: background-color 0.3s; margin: 0 10px;} .btn:hover {background-color: #3d9f8d;} .btn:focus {outline: none;} .description {text-align: center; margin-top: 50px; padding: 0 20px; font-size: 18px; line-height: 1.8; max-width: 80%; margin-left: auto; margin-right: auto;} .terms {background-color: #fff; padding: 30px 20px; margin-top: 50px; text-align: center; border-top: 2px solid #50b3a2; max-width: 80%; margin-left: auto; margin-right: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);} .terms h2 {font-size: 28px; color: #50b3a2; margin-bottom: 20px;} .terms p {font-size: 16px; color: #555; line-height: 1.6; margin-bottom: 10px;} .terms ul {list-style-type: none; padding: 0; margin-bottom: 20px;} .terms ul li {font-size: 16px; color: #555; margin-bottom: 10px;} #IdForm {display: flex; justify-content: center; margin-top: 20px; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);} #IdForm input {padding: 12px; font-size: 18px; border: 2px solid #ddd; border-radius: 8px; margin-right: 10px; width: 60%;} #IdForm button {padding: 12px 20px; font-size: 18px; background-color: #50b3a2; color: white; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s ease;} #IdForm button:hover {background-color: #3e9b83;} #IdForm p {text-align: center; color: #d9534f; font-size: 16px; margin-top: 20px;}</style>
+</head>
+<body>
+  <header>
+    <h1>タイトル</h1>
+    <div class="line-container">
+      <div class="line">
+      </div>
+    </div>
+  </header>
+  <section class="description">
+    <p>うわわわっわっわー</p>
+  </section>
+<section class="terms">
+  <h2>見出し</h2>
+  <p>あめあめ</p>
+</section>
+<section class="terms">
+  <h2>見出し2</h2>
+  <p>ぼーるぺん</p>
+  <strong>しゃーぺん</strong>
+  <p>
+    うわぁい(⌒▽⌒)
+  </p>
+</section>
+<section class="terms">
+  <h2>見出し3</h2>
+  <p>みみみ<br>
+  テキスト</p>
+</section>                  
+</body>
+</html>
+</textarea>
+      </div>
+      <button id="previewBtn">プレビュー</button>
+
+  <p id="successMessage"></p>
+  <p id="errorMessage" style="color: red;"></p>
+      
+  <input type="hidden" id="formLoadTime">
+    </form>
+  </div>
+  <div class="help-popup" id="helpPopup">
+    <button onclick="closeHelp()">閉じる</button>
+    <div class="help-section">
+      <h4 onclick="toggleHelp(1)">HTMLファイルをアップロード▽</h4>
+      <div>HTMLファイルをアップロードするには、入力欄に直接HTMLファイルをドラッグ＆ドロップしてください。</div>
+    </div>
+    <div class="help-section">
+      <h4 onclick="toggleHelp(2)">パスワードの設定▽</h4>
+      <div>パスワードはページ編集や削除の際に使用します。忘れないようにしましょう。もし忘れてしまった場合、頑張って問い合わせてみて下さい。</div>
+    </div>
+    <div class="help-section">
+      <h4 onclick="toggleHelp(3)">画像を使用したい▽</h4>
+      <div>このサイトは画像のアップロードに対応していないので、他のサービス等にアップロードしたものをご利用ください<br><a href="/help/image" target="_blank">これについて詳しく見る</a></div>
+    </div>
+    <div class="help-section">
+      <h4 onclick="toggleHelp(4)">YouTube動画を埋め込みたい▽</h4>
+      <div>YouTube動画を見れない人たちも多く居るので、YouTube動画を誰でも見れるように変更してから利用する必要があります。<br><a href="/help/yt" target="_blank">これについて詳しく見る</a></div>
+    </div>
+  </div>  
+  <section class="terms">
+  <h2>注意！</h2>
+    <strong>これはテンプレートを表示しているだけです。自分のサイトに反映したい場合、このコードをコピペして下さい。</strong>
+</section>
+  <script>
+  document.getElementById('helpButton').addEventListener('click', () => {
+      document.getElementById('helpPopup').style.display = 'block';
+    });
+    
+      document.getElementById('previewBtn').addEventListener('click', function() {
+        const htmlContent = document.getElementById('htmlInput').value;
+        if (htmlContent) {
+          const previewWindow = window.open('about:blank', '_blank');
+          previewWindow.document.write(htmlContent);
+        } else {
+          alert("HTMLを入力してください！");
+        }
+      });
+
+    function toggleHelp(index) {
+      const section = document.querySelectorAll('.help-section')[index - 1];
+      const div = section.querySelector('div');
+      div.style.display = div.style.display === 'none' ? 'block' : 'none';
+    }
+    function closeHelp() {
+      document.getElementById('helpPopup').style.display = 'none';
+    }
+    document.getElementById('htmlInput').addEventListener('dragover', (e) => {
+      e.preventDefault();
+    });
+    document.getElementById('htmlInput').addEventListener('drop', (e) => {
+      e.preventDefault();
+      const file = e.dataTransfer.files[0];
+      if (file && file.type === 'text/html') {
+        const reader = new FileReader();
+        reader.onload = function() {
+          document.getElementById('htmlInput').value = reader.result;
+        };
+        reader.readAsText(file);
+      } else {
+        alert('HTMLファイルをドラッグしてください');
+      }
+    });   
+  </script>
+</body>
